@@ -154,11 +154,15 @@ window.addEventListener('DOMContentLoaded', function() {
   langSel.addEventListener('change', function() {
     const lang = langSel.value;
     const t = translations[lang] || translations['en'];
-    // Navbar
-    document.querySelector('a[href="#about"]').textContent = t.about;
-    document.querySelector('a[href="#services"]').textContent = t.services;
-    document.querySelector('a[href="#brands"]').textContent = t.brands;
-    document.querySelector('a[href="#contact"]').textContent = t.contact;
+    // Navbar (update all nav links for language)
+    var navLinks = document.querySelectorAll('nav ul li a');
+    if (navLinks.length >= 5) {
+      navLinks[0].textContent = 'Profile';
+      navLinks[1].textContent = t.about;
+      navLinks[2].textContent = t.services;
+      navLinks[3].textContent = t.brands;
+      navLinks[4].textContent = t.contact;
+    }
     // Main Title
     document.getElementById('mainTitle').textContent = t.mainTitle;
     // Hero
@@ -189,8 +193,24 @@ window.addEventListener('DOMContentLoaded', function() {
     document.querySelector('#testimonials .testimonial h4').textContent = t.testimonialName1;
     // Contact form button
     document.querySelector('#quoteForm button[type="submit"]').textContent = t.contactBtn;
-    // Footer
-    document.querySelector('footer p').textContent = t.footer;
+    // Footer copyright (bottom)
+    var footerBottom = document.querySelector('.footer-bottom');
+    if(footerBottom) footerBottom.innerHTML = t.footer;
+    // Footer brand name
+    var footerBrand = document.querySelector('.footer-brand-name');
+    if(footerBrand) footerBrand.textContent = t.mainTitle;
+    // Footer contact heading
+    var footerContactHeading = document.querySelector('.footer-heading');
+    if(footerContactHeading) footerContactHeading.textContent = t.contactTitle.toUpperCase();
+    // Profile section title
+    var profileTitle = document.querySelector('#profile h2');
+    if(profileTitle) profileTitle.textContent = t.about;
+    // Update testimonials section title if present
+    var testimonialsTitle = document.querySelector('#testimonials h2');
+    if(testimonialsTitle) testimonialsTitle.textContent = t.testimonialsTitle;
+    // Update brands section title if present
+    var brandsTitle = document.querySelector('#brands h2');
+    if(brandsTitle) brandsTitle.textContent = t.brandsTitle;
   });
 });
 </script>
@@ -501,14 +521,37 @@ function shareVia(method) {
 <script src="script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>AOS.init();</script>
-  <!-- Modern Footer Include -->
-  <!--#include file="footer.html" -->
-  <div id="footer-placeholder"></div>
+  <!-- Modern Footer for Preyash Insurance Services -->
+  <footer class="footer-main">
+    <div class="footer-content">
+      <div class="footer-col logo-col">
+        <img src="images/footer_logo.png" alt="Preyash Insurance Logo" class="footer-logo" />
+        <div class="footer-brand-name">Preyash Insurance Services</div>
+        <div class="footer-location">Ahmedabad, Gujarat</div>
+        <div class="footer-social">
+          <a href="https://wa.me/919722574788" target="_blank" title="WhatsApp" class="footer-social-icon whatsapp"><img src="images/whatsapp logo.jpeg" alt="WhatsApp" /></a>
+          <a href="https://www.facebook.com/share/16nn9kcGJ1/" target="_blank" title="Facebook" class="footer-social-icon facebook"><img src="images/facebook.svg" alt="Facebook" /></a>
+          <a href="https://www.instagram.com/insurance_by_dharmesh/profilecard/?igsh=MTg1a29pazVyeHgyNg==" target="_blank" title="Instagram" class="footer-social-icon instagram"><img src="images/instagram.svg" alt="Instagram" /></a>
+          <a href="https://www.linkedin.com/in/dharmesh-panchal-09722574788?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" title="LinkedIn" class="footer-social-icon linkedin"><img src="images/linkedin.svg" alt="LinkedIn" /></a>
+        </div>
+      </div>
+      <div class="footer-col contact-col">
+        <div class="footer-heading">CONTACT</div>
+        <div class="footer-contact-item"><span>Email:</span> <a href="mailto:dpinsurance2133@gmail.com">dpinsurance2133@gmail.com</a></div>
+        <div class="footer-contact-item"><span>Phone:</span> <a href="tel:9722574788">9722574788</a></div>
+        <div class="footer-heading" style="margin-top:1.2rem;">Visitor Count</div>
+        <div id="visitorCount" class="footer-visitor-count">0</div>
+      </div>
+      <div class="footer-col map-col">
+        <div class="footer-heading">Location Map</div>
+        <div class="footer-map-embed">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.024964024052!2d72.5495403!3d23.0890833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e835ac6ba0107%3A0x4afff16c99e1ee29!2sPREYASH%20Insurance%20Services%20and%20Investment%20Saathi%20Gujarat!5e0!3m2!1sen!2sin!4v1720340000000!5m2!1sen!2sin" width="250" height="120" style="border:0;border-radius:10px;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2025 Preyash Insurance Services. All rights reserved.</div> 
+  </footer>
   <script>
-    // Dynamically load footer.html
-    fetch('footer.html').then(r => r.text()).then(html => {
-      document.getElementById('footer-placeholder').innerHTML = html;
-    });
     // Visitor Counter (localStorage based demo, replace with backend for real count)
     function updateVisitorCount() {
       let count = localStorage.getItem('visitorCount') || 0;
