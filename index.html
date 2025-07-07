@@ -486,14 +486,25 @@ var shareBtn = document.getElementById('share-main-btn');
 var sharePopup = document.getElementById('share-options-popup');
 var shareFloatBtn = document.getElementById('share-float-btn');
 
-shareBtn.addEventListener('mouseenter', function() {
-  sharePopup.style.display = 'block';
-});
-shareFloatBtn.addEventListener('mouseleave', function(e) {
-  // Only hide if mouse leaves the whole floating area
-  if (!shareFloatBtn.contains(e.relatedTarget)) {
+// Show popup on click, and keep it open until user clicks outside or clicks again
+shareBtn.addEventListener('click', function(e) {
+  e.stopPropagation();
+  if (sharePopup.style.display === 'block') {
     sharePopup.style.display = 'none';
+  } else {
+    sharePopup.style.display = 'block';
     // Reset copied effect if open again
+    var copied = document.getElementById('copied-effect');
+    if (copied) copied.style.display = 'none';
+    var copyText = document.getElementById('copy-link-text');
+    if (copyText) copyText.textContent = 'Copy Link';
+  }
+});
+
+// Hide popup when clicking outside
+document.addEventListener('click', function(e) {
+  if (!shareFloatBtn.contains(e.target)) {
+    sharePopup.style.display = 'none';
     var copied = document.getElementById('copied-effect');
     if (copied) copied.style.display = 'none';
     var copyText = document.getElementById('copy-link-text');
