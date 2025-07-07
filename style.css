@@ -1,3 +1,135 @@
+.footer-main {
+  background: #1877f3;
+  color: #fff;
+  padding: 2.2rem 0 0 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin-top: 2.5rem;
+  box-shadow: 0 -2px 16px rgba(0,0,0,0.08);
+}
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 2.5rem;
+  padding: 0 2rem;
+}
+.footer-col {
+  flex: 1 1 220px;
+  min-width: 200px;
+  margin-bottom: 1.5rem;
+}
+.footer-map-embed iframe {
+  width: 100%;
+  max-width: 260px;
+  min-width: 180px;
+  height: 120px;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #0002;
+  margin-top: 0.5rem;
+}
+.logo-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+.footer-logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 8px #0002;
+  margin-bottom: 0.3rem;
+}
+.footer-brand-name {
+  font-size: 1.25rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.2rem;
+}
+.footer-location {
+  font-size: 1rem;
+  color: #ffe6e6;
+  margin-bottom: 0.5rem;
+}
+.footer-social {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 0.2rem;
+}
+.footer-social-icon img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+  padding: 3px;
+  box-shadow: 0 1px 4px #0001;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.footer-social-icon:hover img {
+  transform: scale(1.13) rotate(-7deg);
+  box-shadow: 0 2px 10px #fff3;
+}
+.footer-heading {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.7rem;
+  color: #ffe6e6;
+  letter-spacing: 0.5px;
+}
+.footer-contact-item {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+.footer-contact-item span {
+  font-weight: 500;
+  color: #fff;
+  margin-right: 0.3rem;
+}
+.footer-contact-item a {
+  color: #fff;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+.footer-contact-item a:hover {
+  color: #ffe6e6;
+}
+.footer-visitor-count {
+  font-size: 2.7rem;
+  line-height: 1.18;
+  font-weight: bold;
+  color: #ffe6e6;
+  margin-top: 0.2rem;
+  letter-spacing: 2px;
+}
+.footer-bottom {
+  text-align: center;
+  color: #fff;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  padding-bottom: 0.7rem;
+  border-top: 1px solid #fff2;
+  padding-top: 0.7rem;
+  background: #000;
+  margin-bottom: 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+@media (max-width: 800px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+  .footer-col {
+    min-width: 0;
+  }
+}
 /* ===== Profile Card Modern Layout ===== */
 .profile-card {
   display: flex;

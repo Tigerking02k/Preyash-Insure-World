@@ -416,9 +416,9 @@ window.addEventListener('DOMContentLoaded', function() {
 </div>
 
 
-<footer>
+<!-- <footer>
   <p>&copy; 2025 PREYASH INSURANCE SERVICES. All rights reserved.</p>
-</footer>
+</footer> -->
 
 
 <!-- Share This Page Floating Button (bottom-right) -->
@@ -501,5 +501,23 @@ function shareVia(method) {
 <script src="script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>AOS.init();</script>
+  <!-- Modern Footer Include -->
+  <!--#include file="footer.html" -->
+  <div id="footer-placeholder"></div>
+  <script>
+    // Dynamically load footer.html
+    fetch('footer.html').then(r => r.text()).then(html => {
+      document.getElementById('footer-placeholder').innerHTML = html;
+    });
+    // Visitor Counter (localStorage based demo, replace with backend for real count)
+    function updateVisitorCount() {
+      let count = localStorage.getItem('visitorCount') || 0;
+      count = parseInt(count) + 1;
+      localStorage.setItem('visitorCount', count);
+      var el = document.getElementById('visitorCount');
+      if (el) el.textContent = count;
+    }
+    window.addEventListener('DOMContentLoaded', updateVisitorCount);
+  </script>
 </body>
 </html>
