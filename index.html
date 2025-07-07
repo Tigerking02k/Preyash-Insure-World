@@ -16,8 +16,6 @@
   
 </head>
 <body>
-
-<div class="background-text">PREYASH INSURANCE</div>
 <div class="floating-bg-text">
   <div>PREYASH INSURANCE</div>
   <div>PREYASH INSURANCE</div>
@@ -28,9 +26,9 @@
 
 <header>
   <header>
+    <img src="images/LogoDP.png" alt="Logo" height="200" />
   <header>
   <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-    <img src="images/logo1.jpeg" alt="Logo" height="50" />
     <h1>PREYASH INSURANCE SERVICES</h1>
   </div>
   <nav>
@@ -44,6 +42,8 @@
   </nav>
 </header>
 
+<div style="height: 5vh;"></div>
+
 <section class="hero">
   <h2>Your Trusted Multi-Brand Insurance Partner</h2>
   <p>We help you compare and choose the best insurance from top providers.</p>
@@ -56,11 +56,11 @@
 </section>
 
 <section id="whyus" data-aos="fade-up">
-  <h2>Why Choose <span style="color:#ffea00;">PREYASH INSURANCE</span>?</h2>
+  <h2 style="color: #ffea00; font-weight: bold; letter-spacing: 1px; text-shadow: 1px 1px 4px #333;">Why Choose PREYASH INSURANCE ?</h2>
   <ul>
-    <li>✅ Compare <strong>15+ Top Brands</strong></li>
-    <li>✅ <strong>Quick Claim Support</strong></li>
-    <li>✅ Trusted by <strong><span id="clientCount">0</span>+ Clients</strong></li>
+    <li>Compare <strong>15+ Top Brands</strong></li>
+    <li><strong>Quick Claim Support</strong></li>
+    <li>Trusted by <strong><span id="clientCount">0</span>+ Clients</strong></li>
   </ul>
 </section>
 
@@ -151,8 +151,8 @@
   <h2>Contact Us</h2>
   <form id="quoteForm">
     <input type="text" name="name" placeholder="Your Name" required />
-    <input type="tel" name="phone" placeholder="Phone Number" required />
-    <input type="tel" name="contact" placeholder="WhatsApp Number" required />
+    <input type="tel" name="phone" placeholder="Phone Number" required maxlength="10" pattern="[0-9]{10}" inputmode="numeric" />
+    <input type="tel" name="contact" placeholder="WhatsApp Number" required maxlength="10" pattern="[0-9]{10}" inputmode="numeric" />
     <input type="email" name="email" placeholder="Email (optional)" />
     
     <select id="insuranceType" name="insuranceType" required onchange="filterCompanies()">
@@ -168,6 +168,7 @@
   <option value="">Select Insurance Company</option>
 </select>
 
+    <textarea name="userQueryMain" placeholder="Your Query (max 150 characters)" maxlength="150" style="margin-top:10px;"></textarea>
     <button type="submit">Request Quote</button>
     <p id="formMessage"></p>
   </form>
@@ -177,13 +178,13 @@
 <div id="brandFormModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeForm()">&times;</span>
-    <h3>Enquiry for <span id="brandName"></span></h3>
+    <h3>Inquiry for <span id="brandName"></span></h3>
    <form id="brandInquiryForm">
   <input type="text" id="brandNameInput" placeholder="Brand Name" readonly />
   <input type="text" id="userName" placeholder="Your Name" required />
-  <input type="tel" id="userPhone" placeholder="Phone Number" required />
+  <input type="tel" id="userPhone" placeholder="Phone Number" required maxlength="10" pattern="[0-9]{10}" inputmode="numeric" />
   <input type="email" id="userEmail" placeholder="Email (optional)" />
-  <textarea id="userQuery" placeholder="Your Query" required></textarea>
+  <textarea id="userQuery" placeholder="Your Query" required maxlength="150"></textarea>
   <button type="submit">Submit</button>
   <p id="popupMessage"></p>
 </form>
@@ -194,18 +195,18 @@
 <div id="serviceFormModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeServiceForm()">&times;</span>
-    <h3>Enquiry for <span id="serviceTitle"></span></h3>
+    <h3>Inquiry for <span id="serviceTitle"></span></h3>
     <p id="serviceDescription"></p>
     <form id="serviceForm">
       <select id="serviceCompanySelect" required>
         <option value="">Select Insurance Company</option>
       </select>
       <input type="text" id="serviceUserName" placeholder="Your Name" required />
-      <input type="tel" id="serviceUserPhone" placeholder="Phone Number" required />
-      <textarea id="serviceUserQuery" placeholder="Your Query" required></textarea>
+      <input type="tel" id="serviceUserPhone" placeholder="Phone Number" required maxlength="10" pattern="[0-9]{10}" inputmode="numeric" />
+      <textarea id="serviceUserQuery" placeholder="Your Query" required maxlength="150"></textarea>
       <button type="submit">Submit</button>
       <p id="serviceFormMsg"></p>
-       </form>x
+       </form>
   </div>
 </div>
 

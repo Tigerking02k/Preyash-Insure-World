@@ -54,11 +54,54 @@ document.getElementById("quoteForm").addEventListener("submit", function (e) {
 
 // ========== SERVICE MODAL ==========
 const serviceCompanies = {
-  "Life Insurance": ["LIC", "HDFC Life", "ICICI Prudential", "SBI Life", "Tata AIA", "Max Life"],
-  "Health Insurance": ["Star Health", "HDFC Ergo", "Religare", "Max Bupa", "ICICI Lombard"],
-  "Motor Insurance": ["Bajaj Allianz", "HDFC Ergo", "Tata AIG", "IFFCO Tokio"],
+  "Life Insurance": [
+    "Life Insurance Corporation of India",
+    "HDFC Life Insurance Co. Ltd.",
+    "Axis Max Life Insurance Co. Ltd.",
+    "ICICI Prudential Life Insurance Co. Ltd.",
+    "Kotak Life Insurance Co. Ltd.",
+    "TATA AIA Life Insurance Co. Ltd.",
+    "SBI Life Insurance Co. Ltd.",
+    "Bajaj Allianz Life Insurance Co. Ltd.",
+    "PNB MetLife India Insurance Co. Ltd.",
+    "Reliance Nippon Life Insurance Company",
+    "Aviva Life Insurance Company India Ltd.",
+    "Bharti AXA Life Insurance Co. Ltd."
+  ],
+
+  "Health Insurance": ["Oriental Insurance", "Star Health", "HDFC Ergo", "Niva Bupa", "ICICI Lombard", "HDFC Health", "Care Health", "Tata AIG", "Aditya Birla Health", "Future Generali", "Bajaj Allianz", "Reliance General"],
+
+  "Motor Insurance": [
+    "Aditya Birla Health Insurance",
+    "Agriculture Insurance Company of India",
+    "Bajaj Allianz General Insurance",
+    "Cholamandalam MS General Insurance",
+    "Manipal Cigna Health Insurance Company Limited",
+    "Go Digit Insurance",
+    "Future Generali India Insurance",
+    "HDFC ERGO General Insurance Company",
+    "ICICI Lombard",
+    "IFFCO TOKIO General Insurance",
+    "Liberty General Insurance",
+    "Magma General Insurance",
+    "Niva Bupa Health Insurance",
+    "National Insurance Company",
+    "New India Assurance",
+    "Raheja QBE General Insurance",
+    "Reliance General Insurance",
+    "Royal Sundaram General Insurance",
+    "SBI General Insurance",
+    "Shriram General Insurance",
+    "Tata AIG General Insurance",
+    "The Oriental Insurance Company",
+    "United India Insurance Company",
+    "Universal Sompo General Insurance Company"
+  ],
+
   "Travel Insurance": ["TATA AIG", "Religare", "ICICI Lombard"],
+
   "Corporate Insurance": ["New India Assurance", "Oriental Insurance", "United India"]
+
 };
 
 const serviceDescriptions = {
