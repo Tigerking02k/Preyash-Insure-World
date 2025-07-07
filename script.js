@@ -23,7 +23,7 @@ document.getElementById("brandInquiryForm").addEventListener("submit", function 
   }
 
   const message = `New Enquiry for ${brand}%0AName: ${name}%0APhone: ${phone}%0AEmail: ${email}%0AQuery: ${query}`;
-  window.open(`https://wa.me/918849795135?text=${message}`, "_blank");
+  window.open(`https://wa.me/919722574788?text=${message}`, "_blank");
   document.getElementById("popupMessage").textContent = "✅ Enquiry sent via WhatsApp!";
   this.reset();
   setTimeout(() => closeForm(), 3000);
@@ -45,7 +45,7 @@ document.getElementById("quoteForm").addEventListener("submit", function (e) {
   }
 
   const message = `New Contact Form Enquiry:%0AName: ${name}%0APhone: ${phone}%0AWhatsApp: ${contact}%0AEmail: ${email}%0AInsurance Type: ${insurance}`;
-  window.open(`https://wa.me/918849795135?text=${message}`, "_blank");
+  window.open(`https://wa.me/919722574788?text=${message}`, "_blank");
 
   this.reset();
   window.location.href = "success.html";
@@ -162,7 +162,7 @@ document.getElementById("serviceForm").addEventListener("submit", function (e) {
   }
 
   const message = `New Enquiry for ${service}%0ACompany: ${company}%0AName: ${name}%0APhone: ${phone}%0AQuery: ${query}`;
-  window.open(`https://wa.me/918849795135?text=${message}`, "_blank");
+  window.open(`https://wa.me/919722574788?text=${message}`, "_blank");
 
   this.reset();
   document.getElementById("serviceFormMsg").textContent = "✅ Sent to WhatsApp!";

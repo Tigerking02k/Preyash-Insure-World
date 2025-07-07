@@ -774,7 +774,7 @@ form button:hover {
   margin-bottom: 0.5rem;
 }
 .brand-card {
-  min-height: 230px; /* ✅ or adjust as needed */
+  min-height: 120px; /* ✅ or adjust as needed */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
