@@ -26,9 +26,14 @@
 
 
 <header style="background: linear-gradient(to right, #004080, #007bff); color: white; padding: 1rem 0; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); position: sticky; top: 0; z-index: 100;">
-  <div style="display: flex; align-items: center; justify-content: center; gap: 18px; max-width: 1100px; margin: 0 auto;">
+  <div style="position: relative; display: flex; align-items: center; justify-content: center; gap: 18px; max-width: 1100px; margin: 0 auto;">
     <img src="images/LogoDP.png" alt="Logo" height="60" id="logoDP" style="margin-right: 0; transition: transform 0.7s cubic-bezier(.68,-0.55,.27,1.55);" />
-    <h1 style="margin: 0; font-size: 2.1rem; font-weight: bold; letter-spacing: 1px;">PREYASH INSURANCE SERVICES</h1>
+    <h1 id="mainTitle" style="margin: 0; font-size: 2.1rem; font-weight: bold; letter-spacing: 1px;">PREYASH INSURANCE SERVICES</h1>
+    <select id="languageSelect" style="position: absolute; top: 0; right: 0; margin: 12px 18px 0 0; padding: 6px 18px; border-radius: 20px; border: none; background: #fff; color: #004080; font-weight: bold; font-size: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); cursor: pointer; outline: none;">
+      <option value="en">English</option>
+      <option value="hi">हिन्दी</option>
+      <option value="gu">ગુજરાતી</option>
+    </select>
   </div>
   <nav>
     <ul style="list-style: none; display: flex; justify-content: center; gap: 20px; margin-top: 10px; padding: 0;">
@@ -47,6 +52,145 @@ window.addEventListener('DOMContentLoaded', function() {
   setTimeout(function() {
     logo.style.transform = 'translateX(0) scale(1)';
   }, 100);
+
+  // Language change logic (English, Hindi, Gujarati)
+  const translations = {
+    en: {
+      mainTitle: 'PREYASH INSURANCE SERVICES',
+      about: 'About Us',
+      services: 'Our Services',
+      brands: 'Top Brands',
+      contact: 'Contact',
+      hero1: 'Your Trusted Multi-Brand Insurance Partner',
+      hero2: 'We help you compare and choose the best insurance from top providers.',
+      quote: 'Get a Free Quote',
+      aboutTitle: 'About Us',
+      aboutDesc: 'We are Gujarat’s trusted agency for LIC, HDFC Life, Tata AIA, ICICI, SBI Life, and more.',
+      aboutDesc2: 'Hi, I am DHARMESH PANCHAL. I’ve been in the Indian insurance industry for more than 15 years. I can help you compare and buy the best insurance from India’s top insurance providers. We also Hiring Insurance Adviser for Multy Brand Multiple Product Sell',
+      whyus: 'Why Choose PREYASH INSURANCE ?',
+      whyusList: [
+        '15+ Years of Experience',
+        'Compare 15+ Top Brands',
+        'Quick Claim Support',
+        'Trusted by <span id="clientCount">0</span>+ Clients'
+      ],
+      servicesTitle: 'Our Services',
+      brandsTitle: 'Top Insurance Brands',
+      reviewsTitle: 'Love Our Services? ❤️',
+      reviewsDesc: 'Leave us a Google Review to help others find trusted insurance support.',
+      reviewBtn: '🌟 Leave a Google Review',
+      contactTitle: 'Contact Us',
+      testimonialsTitle: 'What Our Clients Say',
+      testimonial1: '"Got my policy in one day. Amazing support!"',
+      testimonialName1: '- Dharmesh Panchal, Ahmedabad',
+      contactBtn: 'Request Quote',
+      footer: '© 2025 PREYASH INSURANCE SERVICES. All rights reserved.'
+    },
+    hi: {
+      mainTitle: 'प्रेयश इंश्योरेंस सर्विसेज',
+      about: 'हमारे बारे में',
+      services: 'हमारी सेवाएं',
+      brands: 'शीर्ष ब्रांड्स',
+      contact: 'संपर्क करें',
+      hero1: 'आपका विश्वसनीय मल्टी-ब्रांड बीमा साथी',
+      hero2: 'हम आपको शीर्ष प्रदाताओं से सर्वश्रेष्ठ बीमा चुनने में मदद करते हैं।',
+      quote: 'मुफ्त कोट प्राप्त करें',
+      aboutTitle: 'हमारे बारे में',
+      aboutDesc: 'हम गुजरात की विश्वसनीय एजेंसी हैं, जो LIC, HDFC Life, Tata AIA, ICICI, SBI Life और अधिक के लिए सेवाएं देती है।',
+      aboutDesc2: 'नमस्ते, मैं धर्मेश पंचाल हूं। मुझे भारतीय बीमा उद्योग में 15+ वर्ष का अनुभव है। मैं आपको भारत के शीर्ष बीमा प्रदाताओं से सर्वश्रेष्ठ बीमा चुनने और खरीदने में मदद कर सकता हूं। हम मल्टी ब्रांड मल्टी प्रोडक्ट सेल के लिए बीमा सलाहकार भी नियुक्त कर रहे हैं।',
+      whyus: 'प्रेयश इंश्योरेंस क्यों चुनें?',
+      whyusList: [
+        '15+ वर्षों का अनुभव',
+        '15+ शीर्ष ब्रांड्स की तुलना',
+        'त्वरित क्लेम सहायता',
+        'विश्वासपात्र <span id="clientCount">0</span>+ ग्राहक'
+      ],
+      servicesTitle: 'हमारी सेवाएं',
+      brandsTitle: 'शीर्ष बीमा ब्रांड्स',
+      reviewsTitle: 'हमारी सेवाएं पसंद आईं? ❤️',
+      reviewsDesc: 'अन्य लोगों को विश्वसनीय बीमा सहायता खोजने में मदद करने के लिए हमें Google पर रिव्यू दें।',
+      reviewBtn: '🌟 Google रिव्यू दें',
+      contactTitle: 'संपर्क करें',
+      testimonialsTitle: 'हमारे ग्राहक क्या कहते हैं',
+      testimonial1: '"मुझे एक दिन में पॉलिसी मिल गई। शानदार सपोर्ट!"',
+      testimonialName1: '- धर्मेश पंचाल, अहमदाबाद',
+      contactBtn: 'कोट प्राप्त करें',
+      footer: '© 2025 प्रेयश इंश्योरेंस सर्विसेज. सर्वाधिकार सुरक्षित.'
+    },
+    gu: {
+      mainTitle: 'પ્રેયશ ઇન્શ્યોરન્સ સર્વિસિસ',
+      about: 'અમારા વિશે',
+      services: 'અમારી સેવાઓ',
+      brands: 'ટોપ બ્રાન્ડ્સ',
+      contact: 'સંપર્ક કરો',
+      hero1: 'તમારો વિશ્વસનીય મલ્ટી-બ્રાન્ડ ઇન્શ્યોરન્સ પાર્ટનર',
+      hero2: 'અમે તમને ટોચના પ્રદાતાઓમાંથી શ્રેષ્ઠ ઇન્શ્યોરન્સ પસંદ કરવામાં મદદ કરીએ છીએ.',
+      quote: 'મફત ક્વોટ મેળવો',
+      aboutTitle: 'અમારા વિશે',
+      aboutDesc: 'અમે ગુજરાતની વિશ્વસનીય એજન્સી છીએ, LIC, HDFC Life, Tata AIA, ICICI, SBI Life અને વધુ માટે.',
+      aboutDesc2: 'હું ધર્મેશ પંચાલ છું. મને ભારતીય ઇન્શ્યોરન્સ ઉદ્યોગમાં 15+ વર્ષનો અનુભવ છે. હું તમને ભારતના ટોચના ઇન્શ્યોરન્સ પ્રદાતાઓમાંથી શ્રેષ્ઠ ઇન્શ્યોરન્સ પસંદ કરવામાં અને ખરીદવામાં મદદ કરી શકું છું. અમે મલ્ટી બ્રાન્ડ મલ્ટી પ્રોડક્ટ વેચાણ માટે એડવાઇઝર પણ હાયર કરીએ છીએ.',
+      whyus: 'પ્રેયશ ઇન્શ્યોરન્સ કેમ પસંદ કરો?',
+      whyusList: [
+        '15+ વર્ષનો અનુભવ',
+        '15+ ટોચના બ્રાન્ડ્સની તુલના',
+        'ઝડપી ક્લેમ સપોર્ટ',
+        'વિશ્વાસુ <span id="clientCount">0</span>+ ક્લાયન્ટ'
+      ],
+      servicesTitle: 'અમારી સેવાઓ',
+      brandsTitle: 'ટોપ ઇન્શ્યોરન્સ બ્રાન્ડ્સ',
+      reviewsTitle: 'અમારી સેવાઓ ગમી? ❤️',
+      reviewsDesc: 'અન્ય લોકોને વિશ્વસનીય ઇન્શ્યોરન્સ સહાય શોધવામાં મદદ કરવા માટે અમને Google પર રિવ્યુ આપો.',
+      reviewBtn: '🌟 Google રિવ્યુ આપો',
+      contactTitle: 'સંપર્ક કરો',
+      testimonialsTitle: 'અમારા ક્લાયન્ટ શું કહે છે',
+      testimonial1: '"મને એક જ દિવસે પોલિસી મળી. અદ્ભુત સપોર્ટ!"',
+      testimonialName1: '- ધર્મેશ પંચાલ, અમદાવાદ',
+      contactBtn: 'ક્વોટ મેળવો',
+      footer: '© 2025 પ્રેયશ ઇન્શ્યોરન્સ સર્વિસિસ. સર્વાધિકાર સુરક્ષિત.'
+    }
+  };
+  const langSel = document.getElementById('languageSelect');
+  langSel.addEventListener('change', function() {
+    const lang = langSel.value;
+    const t = translations[lang] || translations['en'];
+    // Navbar
+    document.querySelector('a[href="#about"]').textContent = t.about;
+    document.querySelector('a[href="#services"]').textContent = t.services;
+    document.querySelector('a[href="#brands"]').textContent = t.brands;
+    document.querySelector('a[href="#contact"]').textContent = t.contact;
+    // Main Title
+    document.getElementById('mainTitle').textContent = t.mainTitle;
+    // Hero
+    document.querySelector('.hero h2').textContent = t.hero1;
+    document.querySelector('.hero p').textContent = t.hero2;
+    document.querySelector('.hero .btn').textContent = t.quote;
+    // About section
+    document.querySelector('#about h2').textContent = t.aboutTitle;
+    document.querySelectorAll('#about p')[0].textContent = t.aboutDesc;
+    document.querySelectorAll('#about p')[1].textContent = t.aboutDesc2;
+    // Why Us section
+    document.querySelector('#whyus h2').textContent = t.whyus;
+    const whyusList = document.querySelectorAll('#whyus ul li');
+    t.whyusList.forEach((item, i) => { if(whyusList[i]) whyusList[i].innerHTML = item; });
+    // Services section
+    document.querySelector('#services h2').textContent = t.servicesTitle;
+    // Brands section
+    document.querySelector('#brands h2').textContent = t.brandsTitle;
+    // Reviews section
+    document.querySelector('#reviews h2').textContent = t.reviewsTitle;
+    document.querySelector('#reviews p').textContent = t.reviewsDesc;
+    document.querySelector('.google-review-btn').textContent = t.reviewBtn;
+    // Contact section
+    document.querySelector('#contact h2').textContent = t.contactTitle;
+    // Testimonials section
+    document.querySelector('#testimonials h2').textContent = t.testimonialsTitle;
+    document.querySelector('#testimonials .testimonial p').textContent = t.testimonial1;
+    document.querySelector('#testimonials .testimonial h4').textContent = t.testimonialName1;
+    // Contact form button
+    document.querySelector('#quoteForm button[type="submit"]').textContent = t.contactBtn;
+    // Footer
+    document.querySelector('footer p').textContent = t.footer;
+  });
 });
 </script>
 
@@ -143,7 +287,7 @@ window.addEventListener('DOMContentLoaded', function() {
   <h2>What Our Clients Say</h2>
   <div class="testimonial">
     <p>"Got my policy in one day. Amazing support!"</p>
-    <h4>- Dharmesh Panchal, Ahmedabad</h4>
+    <h4>- Dharmesh Panchal, +91 9722574788</h4>
   </div>
 </section>
 
