@@ -630,8 +630,9 @@ footer {
 .google-review-btn:hover {
   background-color: #2a65c9;
 }
+/* Bright yellow background for testimonials */
 #testimonials {
-  background: #fff;
+  background: #f5d42e;
   padding: 2rem;
   border-radius: 10px;
   max-width: 1000px;
@@ -676,8 +677,9 @@ footer {
   color: #004080;
   font-weight: 600;
 }
+
 #contact {
-  background: #e6f2ff;
+  background: #56cfe1;
   padding: 2rem;
   border-radius: 10px;
   max-width: 800px;
