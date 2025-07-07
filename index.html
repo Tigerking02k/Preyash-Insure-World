@@ -235,6 +235,13 @@ window.addEventListener('DOMContentLoaded', function() {
         <a href="https://www.linkedin.com/in/dharmesh-panchal-09722574788?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="profile-icon" title="LinkedIn" target="_blank"><img src="images/linkedin-color.svg" alt="LinkedIn" style="width: 28px; height: 28px;" /></a>
         <a href="https://www.linkedin.com/in/dharmesh-panchal-09722574788?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="profile-link-underline">LinkedIn</a>
     <style>
+  /* Share Copied effect animation */
+  @keyframes copiedPop {
+    0% { opacity: 0; transform: translateY(10px) scale(0.95); }
+    20% { opacity: 1; transform: translateY(0) scale(1.05); }
+    60% { opacity: 1; transform: translateY(0) scale(1.05); }
+    100% { opacity: 0; transform: translateY(-10px) scale(0.95); }
+  }
       .profile-link-underline {
         color: #0056b3;
         text-decoration: underline;
@@ -413,9 +420,83 @@ window.addEventListener('DOMContentLoaded', function() {
   <p>&copy; 2025 PREYASH INSURANCE SERVICES. All rights reserved.</p>
 </footer>
 
-<a href="https://wa.me/918849795135" class="whatsapp-float" target="_blank">
-  <img src="images/WhatsApp-icon.png" alt="WhatsApp" />
-</a>
+
+<!-- Share This Page Floating Button (bottom-right) -->
+<div id="share-float-btn" style="position: fixed; bottom: 28px; right: 28px; z-index: 9999;">
+  <button id="share-main-btn" style="background: linear-gradient(135deg,#007bff 60%,#00e0c6 100%); border: none; border-radius: 50%; box-shadow: 0 2px 12px rgba(0,0,0,0.18); width: 58px; height: 58px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: box-shadow 0.2s;">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#fff"/><path d="M17.5 6.5l-11 5m11 1l-11 5" stroke="#007bff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17.5" cy="6.5" r="2.2" fill="#00e0c6" stroke="#007bff" stroke-width="1.2"/><circle cx="6.5" cy="11.5" r="2.2" fill="#fff" stroke="#007bff" stroke-width="1.2"/><circle cx="17.5" cy="17.5" r="2.2" fill="#fff" stroke="#007bff" stroke-width="1.2"/></svg>
+  </button>
+  <div id="share-options-popup" style="display:none; position: absolute; bottom: 70px; right: 0; background: #fff; border-radius: 14px; box-shadow: 0 4px 18px rgba(0,0,0,0.18); padding: 12px 18px; min-width: 180px;">
+    <div id="share-popup-title" style="font-weight:600; margin-bottom:8px; color:#004080;">Share this page</div>
+    <a href="#" onclick="shareVia('whatsapp');return false;" style="display:flex;align-items:center;gap:8px;padding:6px 0;text-decoration:none;color:#25d366;font-weight:500;">
+      <img src="images/WhatsApp-icon.png" alt="WhatsApp" style="width:22px;height:22px;"/> WhatsApp
+    </a>
+    <a href="#" onclick="shareVia('facebook');return false;" style="display:flex;align-items:center;gap:8px;padding:6px 0;text-decoration:none;color:#1877f3;font-weight:500;">
+      <img src="images/facebook-color.svg" alt="Facebook" style="width:22px;height:22px;"/> Facebook
+    </a>
+    <a href="#" onclick="shareVia('twitter');return false;" style="display:flex;align-items:center;gap:8px;padding:6px 0;text-decoration:none;color:#1da1f2;font-weight:500;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#1da1f2"><path d="M24 4.557a9.93 9.93 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.564-2.005.974-3.127 1.195a4.92 4.92 0 0 0-8.384 4.482C7.691 8.095 4.066 6.13 1.64 3.161c-.542.929-.855 2.01-.855 3.17 0 2.188 1.115 4.117 2.823 5.247a4.904 4.904 0 0 1-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.936 4.936 0 0 1-2.224.084c.627 1.956 2.444 3.377 4.6 3.417A9.867 9.867 0 0 1 0 21.543a13.94 13.94 0 0 0 7.548 2.209c9.058 0 14.009-7.496 14.009-13.986 0-.213-.005-.425-.014-.636A9.936 9.936 0 0 0 24 4.557z"/></svg>
+      Twitter
+    </a>
+    <a href="#" onclick="shareVia('copy');return false;" id="copy-link-btn" style="display:flex;align-items:center;gap:8px;padding:6px 0;text-decoration:none;color:#444;font-weight:500;position:relative;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#444"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+      <span id="copy-link-text">Copy Link</span>
+      <span id="copied-effect" style="display:none;position:absolute;right:-110px;top:0;background:#28a745;color:#fff;padding:2px 14px;border-radius:8px;font-size:1.05em;font-weight:700;box-shadow:0 2px 8px rgba(40,167,69,0.13);letter-spacing:0.5px;z-index:10;animation: copiedPop 1.4s cubic-bezier(.4,1.6,.6,1);">Copied!</span>
+    </a>
+  </div>
+</div>
+<script>
+// Show share options popup on hover and hide on mouseleave
+var shareBtn = document.getElementById('share-main-btn');
+var sharePopup = document.getElementById('share-options-popup');
+var shareFloatBtn = document.getElementById('share-float-btn');
+
+shareBtn.addEventListener('mouseenter', function() {
+  sharePopup.style.display = 'block';
+});
+shareFloatBtn.addEventListener('mouseleave', function(e) {
+  // Only hide if mouse leaves the whole floating area
+  if (!shareFloatBtn.contains(e.relatedTarget)) {
+    sharePopup.style.display = 'none';
+    // Reset copied effect if open again
+    var copied = document.getElementById('copied-effect');
+    if (copied) copied.style.display = 'none';
+    var copyText = document.getElementById('copy-link-text');
+    if (copyText) copyText.textContent = 'Copy Link';
+  }
+});
+function shareVia(method) {
+  var url = window.location.href;
+  var title = document.title;
+  if (method === 'whatsapp') {
+    window.open('https://wa.me/?text=' + encodeURIComponent(title + ' ' + url), '_blank');
+  } else if (method === 'facebook') {
+    window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), '_blank');
+  } else if (method === 'twitter') {
+    window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(title), '_blank');
+  } else if (method === 'copy') {
+    navigator.clipboard.writeText(url);
+    var copyText = document.getElementById('copy-link-text');
+    if (copyText) {
+      copyText.textContent = 'Copied!';
+      copyText.style.background = '#28a745';
+      copyText.style.color = '#fff';
+      copyText.style.borderRadius = '8px';
+      copyText.style.padding = '2px 14px';
+      copyText.style.transition = 'background 0.2s, color 0.2s';
+      setTimeout(function(){
+        copyText.textContent = 'Copy Link';
+        copyText.style.background = '';
+        copyText.style.color = '';
+        copyText.style.borderRadius = '';
+        copyText.style.padding = '';
+        copyText.style.transition = '';
+      }, 1400);
+    }
+    // Green effect
+  }
+}
+</script>
 
 <script src="script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
