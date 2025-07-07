@@ -58,6 +58,9 @@ window.addEventListener('DOMContentLoaded', function() {
   const translations = {
     en: {
       mainTitle: 'PREYASH INSURANCE SERVICES',
+      visitorCount: 'Visitor Count',
+      locationMap: 'Location Map',
+      profile: 'Profile',
       about: 'About Us',
       services: 'Our Services',
       brands: 'Top Brands',
@@ -88,7 +91,10 @@ window.addEventListener('DOMContentLoaded', function() {
       footer: '© 2025 PREYASH INSURANCE SERVICES. All rights reserved.'
     },
     hi: {
+      visitorCount: 'विज़िटर काउंट',
+      locationMap: 'स्थान मानचित्र',
       mainTitle: 'प्रेयश इंश्योरेंस सर्विसेज',
+      profile: 'प्रोफ़ाइल',
       about: 'हमारे बारे में',
       services: 'हमारी सेवाएं',
       brands: 'शीर्ष ब्रांड्स',
@@ -119,7 +125,10 @@ window.addEventListener('DOMContentLoaded', function() {
       footer: '© 2025 प्रेयश इंश्योरेंस सर्विसेज. सर्वाधिकार सुरक्षित.'
     },
     gu: {
+      visitorCount: 'વિઝિટર ગણતરી',
+      locationMap: 'સ્થાન નકશો',
       mainTitle: 'પ્રેયશ ઇન્શ્યોરન્સ સર્વિસિસ',
+      profile: 'પ્રોફાઇલ',
       about: 'અમારા વિશે',
       services: 'અમારી સેવાઓ',
       brands: 'ટોપ બ્રાન્ડ્સ',
@@ -154,11 +163,15 @@ window.addEventListener('DOMContentLoaded', function() {
   langSel.addEventListener('change', function() {
     const lang = langSel.value;
     const t = translations[lang] || translations['en'];
-    // Navbar
-    document.querySelector('a[href="#about"]').textContent = t.about;
-    document.querySelector('a[href="#services"]').textContent = t.services;
-    document.querySelector('a[href="#brands"]').textContent = t.brands;
-    document.querySelector('a[href="#contact"]').textContent = t.contact;
+    // Navbar (update all nav links for language)
+    var navLinks = document.querySelectorAll('nav ul li a');
+    if (navLinks.length >= 5) {
+      navLinks[0].textContent = t.profile || 'Profile';
+      navLinks[1].textContent = t.about;
+      navLinks[2].textContent = t.services;
+      navLinks[3].textContent = t.brands;
+      navLinks[4].textContent = t.contact;
+    }
     // Main Title
     document.getElementById('mainTitle').textContent = t.mainTitle;
     // Hero
@@ -189,8 +202,30 @@ window.addEventListener('DOMContentLoaded', function() {
     document.querySelector('#testimonials .testimonial h4').textContent = t.testimonialName1;
     // Contact form button
     document.querySelector('#quoteForm button[type="submit"]').textContent = t.contactBtn;
-    // Footer
-    document.querySelector('footer p').textContent = t.footer;
+    // Footer copyright (bottom)
+    var footerBottom = document.querySelector('.footer-bottom');
+    if(footerBottom) footerBottom.innerHTML = t.footer;
+    // Footer brand name
+    var footerBrand = document.querySelector('.footer-brand-name');
+    if(footerBrand) footerBrand.textContent = t.mainTitle;
+    // Footer contact heading
+    var footerContactHeading = document.querySelector('.footer-heading');
+    if(footerContactHeading) footerContactHeading.textContent = t.contactTitle.toUpperCase();
+    // Profile section title
+    var profileTitle = document.querySelector('#profile h2');
+    if(profileTitle) profileTitle.textContent = t.profile || t.about;
+
+    // Footer Visitor Count and Location Map headings
+    // Find all .footer-heading elements and update by order:
+    // 1st: Contact, 2nd: Visitor Count, 3rd: Location Map
+    var footerHeadings = document.querySelectorAll('.footer-col .footer-heading');
+    if (footerHeadings.length >= 3) {
+      // Contact heading already set above
+      // 2nd: Visitor Count
+      footerHeadings[1].textContent = t.visitorCount || 'Visitor Count';
+      // 3rd: Location Map
+      footerHeadings[2].textContent = t.locationMap || 'Location Map';
+    }
   });
 });
 </script>
@@ -506,6 +541,7 @@ function shareVia(method) {
     <div class="footer-content">
       <div class="footer-col logo-col">
         <img src="images/footerLogo.png" alt="Preyash Insurance Logo" class="footer-logo" />
+
         <div class="footer-brand-name">Preyash Insurance Services</div>
         <div class="footer-location">Ahmedabad, Gujarat</div>
         <div class="footer-social">
