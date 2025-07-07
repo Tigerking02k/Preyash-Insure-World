@@ -194,26 +194,94 @@ window.addEventListener("scroll", () => {
   }
 });
 
+// Updated company options for Contact Us panel
 const companyOptions = {
-  life: ["LIC", "HDFC Life", "ICICI Prudential", "SBI Life", "Tata AIA", "Max Life"],
-  health: ["Star Health", "HDFC Ergo", "Care Health", "Niva Bupa", "ICICI Lombard"],
-  motor: ["Bajaj Allianz", "HDFC Ergo", "Tata AIG", "IFFCO Tokio"],
-  travel: ["TATA AIG", "Care Health", "ICICI Lombard"],
-  corporate: ["New India Assurance", "Oriental Insurance", "United India"]
+  life: [
+    "Life Insurance Corporation of India",
+    "HDFC Life Insurance Co. Ltd.",
+    "Axis Max Life Insurance Co. Ltd.",
+    "ICICI Prudential Life Insurance Co. Ltd.",
+    "Kotak Life Insurance Co. Ltd.",
+    "TATA AIA Life Insurance Co. Ltd.",
+    "SBI Life Insurance Co. Ltd.",
+    "Bajaj Allianz Life Insurance Co. Ltd.",
+    "PNB MetLife India Insurance Co. Ltd.",
+    "Reliance Nippon Life Insurance Company",
+    "Aviva Life Insurance Company India Ltd.",
+    "Bharti AXA Life Insurance Co. Ltd."
+  ],
+  health: [
+    "Aditya Birla Health Insurance",
+    "Bajaj Allianz General Insurance",
+    "Cholamandalam MS General Insurance",
+    "Manipal Cigna Health Insurance Company Limited",
+    "Go Digit Insurance",
+    "Future Generali India Insurance",
+    "HDFC ERGO General Insurance Company",
+    "ICICI Lombard",
+    "IFFCO TOKIO General Insurance",
+    "Niva Bupa Health Insurance",
+    "National Insurance Company",
+    "New India Assurance",
+    "Reliance General Insurance",
+    "SBI General Insurance",
+    "Tata AIG General Insurance",
+    "The Oriental Insurance Company",
+    "United India Insurance Company"
+  ],
+  motor: [
+    "Aditya Birla Health Insurance",
+    "Agriculture Insurance Company of India",
+    "Bajaj Allianz General Insurance",
+    "Cholamandalam MS General Insurance",
+    "Manipal Cigna Health Insurance Company Limited",
+    "Go Digit Insurance",
+    "Future Generali India Insurance",
+    "HDFC ERGO General Insurance Company",
+    "ICICI Lombard",
+    "IFFCO TOKIO General Insurance",
+    "Liberty General Insurance",
+    "Magma General Insurance",
+    "Niva Bupa Health Insurance",
+    "National Insurance Company",
+    "New India Assurance",
+    "Raheja QBE General Insurance",
+    "Reliance General Insurance",
+    "Royal Sundaram General Insurance",
+    "SBI General Insurance",
+    "Shriram General Insurance",
+    "Tata AIG General Insurance",
+    "The Oriental Insurance Company",
+    "United India Insurance Company",
+    "Universal Sompo General Insurance Company"
+  ],
+  travel: [
+    "TATA AIG", "HDFC Ergo", "Oriental Insurance", "ICICI Lombard"
+  ],
+  corporate: [
+    "New India Assurance", "Oriental Insurance", "United India"
+  ]
 };
 
 function filterCompanies() {
   const type = document.getElementById("insuranceType").value;
   const companySelect = document.getElementById("companySelect");
-
   companySelect.innerHTML = '<option value="">Select Insurance Company</option>';
-
   if (companyOptions[type]) {
+    companySelect.disabled = false;
     companyOptions[type].forEach(company => {
       const option = document.createElement("option");
       option.value = company;
       option.textContent = company;
       companySelect.appendChild(option);
     });
+  } else {
+    companySelect.disabled = true;
   }
 }
+
+// Lock company select initially
+document.addEventListener('DOMContentLoaded', function() {
+  filterCompanies();
+  document.getElementById('companySelect').disabled = true;
+});
