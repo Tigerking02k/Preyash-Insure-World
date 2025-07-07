@@ -69,7 +69,25 @@ const serviceCompanies = {
     "Bharti AXA Life Insurance Co. Ltd."
   ],
 
-  "Health Insurance": ["Oriental Insurance", "Star Health", "HDFC Ergo", "Niva Bupa", "ICICI Lombard", "HDFC Health", "Care Health", "Tata AIG", "Aditya Birla Health", "Future Generali", "Bajaj Allianz", "Reliance General"],
+  "Health Insurance": [
+    "Aditya Birla Health Insurance",
+    "Bajaj Allianz General Insurance",
+    "Cholamandalam MS General Insurance",
+    "Manipal Cigna Health Insurance Company Limited",
+    "Go Digit Insurance",
+    "Future Generali India Insurance",
+    "HDFC ERGO General Insurance Company",
+    "ICICI Lombard",
+    "IFFCO TOKIO General Insurance",
+    "Niva Bupa Health Insurance",
+    "National Insurance Company",
+    "New India Assurance",
+    "Reliance General Insurance",
+    "SBI General Insurance",
+    "Tata AIG General Insurance",
+    "The Oriental Insurance Company",
+    "United India Insurance Company"
+  ],
 
   "Motor Insurance": [
     "Aditya Birla Health Insurance",
@@ -98,7 +116,7 @@ const serviceCompanies = {
     "Universal Sompo General Insurance Company"
   ],
 
-  "Travel Insurance": ["TATA AIG", "Religare", "ICICI Lombard"],
+  "Travel Insurance": ["TATA AIG", "HDFC Ergo","Oriental Insurance", "ICICI Lombard"],
 
   "Corporate Insurance": ["New India Assurance", "Oriental Insurance", "United India"]
 

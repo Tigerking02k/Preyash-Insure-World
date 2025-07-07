@@ -1,3 +1,75 @@
+/* 2 rows, 4 columns grid for brand logos */
+.brand-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 32px;
+  justify-items: center;
+  align-items: stretch;
+  max-width: 1100px;
+  margin: 0 auto 32px auto;
+}
+.brand-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 18px;
+  border-radius: 12px;
+  background: #f7f7f7;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  display: block;
+}
+.brand-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 32px 16px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 220px;
+  min-height: 240px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+.brand-card:hover {
+  transform: translateY(-8px) scale(1.04);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.16);
+}
+/* Attractive and centered brand logos in cards */
+.brand-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 32px 16px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 220px;
+  min-height: 240px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+.brand-card:hover {
+  transform: translateY(-8px) scale(1.04);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.16);
+}
+.brand-logo {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin-bottom: 18px;
+  border-radius: 12px;
+  background: #f7f7f7;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  display: block;
+}
+.brands {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
 /* Base Reset */
 * {
   margin: 0;
@@ -183,11 +255,14 @@ section {
 }
 
 .brand-card {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #ccc;
-  padding: 1rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 24px 24px;
   transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
 }
@@ -198,14 +273,24 @@ section {
 }
 
 .brand-card img {
-  max-height: 60px;
-  margin-bottom: 0.5rem;
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 8px; /* Small gap below logo */
+  border-radius: 12px;
+  background: #f7f7f7;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  display: block;
 }
 
 .brand-card p {
   font-weight: bold;
   color: #004080;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
+  margin: 0;
+  text-align: center;
+  line-height: 1.2;
+  max-width: 140px;
 }
 
 /* Forms */
