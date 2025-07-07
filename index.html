@@ -213,27 +213,42 @@ window.addEventListener('DOMContentLoaded', function() {
       <h3 class="profile-name">Dharmesh Panchal</h3>
       <div class="profile-row">
         <a href="tel:9722574788" class="profile-icon" title="Call"><img src="images/phone.svg" alt="Phone" /></a>
-        <span>9722574788</span>
+        <a href="tel:9722574788" class="profile-link-underline">9722574788</a>
       </div>
       <div class="profile-row">
         <a href="mailto:dpinsurance2133@gmail.com" class="profile-icon" title="Email"><img src="images/email.svg" alt="Email" /></a>
-        <span>dpinsurance2133@gmail.com</span>
+        <a href="mailto:dpinsurance2133@gmail.com" class="profile-link-underline">dpinsurance2133@gmail.com</a>
       </div>
       <div class="profile-row">
         <a href="https://wa.me/919722574788" class="profile-icon" title="WhatsApp" target="_blank"><img src="images/WhatsApp-icon.png" alt="WhatsApp" style="width: 26px; height: 26px;" /></a>
-        <span>Chat on WhatsApp</span>
+        <a href="https://wa.me/919722574788" target="_blank" class="profile-link-underline">Chat on WhatsApp</a>
       </div>
       <div class="profile-row">
         <a href="https://www.facebook.com/share/16nn9kcGJ1/" class="profile-icon" title="Facebook" target="_blank"><img src="images/facebook-color.svg" alt="Facebook" style="width: 28px; height: 28px;" /></a>
-        <span>Facebook: <span style="color:#1877F3; font-weight:500;">/insurance_by_dharmesh</span></span>
+        <a href="https://www.facebook.com/share/16nn9kcGJ1/" target="_blank" class="profile-link-underline">Facebook</a>
       </div>
       <div class="profile-row">
         <a href="https://www.instagram.com/insurance_by_dharmesh/profilecard/?igsh=MTg1a29pazVyeHgyNg==" class="profile-icon" title="Instagram" target="_blank"><img src="images/instagram-color.svg" alt="Instagram" style="width: 28px; height: 28px;" /></a>
-        <span>Instagram: <span style="color:#E4405F; font-weight:500;">@insurance_by_dharmesh</span></span>
+        <a href="https://www.instagram.com/insurance_by_dharmesh/profilecard/?igsh=MTg1a29pazVyeHgyNg==" target="_blank" class="profile-link-underline">Instagram</a>
       </div>
       <div class="profile-row">
         <a href="https://www.linkedin.com/in/dharmesh-panchal-09722574788?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="profile-icon" title="LinkedIn" target="_blank"><img src="images/linkedin-color.svg" alt="LinkedIn" style="width: 28px; height: 28px;" /></a>
-        <span>LinkedIn: <span style="color:#0A66C2; font-weight:500;">/dharmesh-panchal-09722574788</span></span>
+        <a href="https://www.linkedin.com/in/dharmesh-panchal-09722574788?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="profile-link-underline">LinkedIn</a>
+    <style>
+      .profile-link-underline {
+        color: #0056b3;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        font-weight: 500;
+        margin-left: 6px;
+        transition: color 0.2s;
+        cursor: pointer;
+      }
+      .profile-link-underline:hover {
+        color: #007bff;
+        text-decoration: underline wavy;
+      }
+    </style>
       </div>
     </div>
     <div class="profile-photo">
