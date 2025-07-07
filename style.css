@@ -1,3 +1,36 @@
+/* --- Fix language selector overlap on mobile --- */
+@media (max-width: 600px) {
+  header > div {
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 8px !important;
+    min-height: 110px;
+    position: relative;
+  }
+  #mainTitle {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    font-size: 1.25rem !important;
+    text-align: center;
+    z-index: 1;
+  }
+  #languageSelect {
+    position: static !important;
+    margin: 0 auto 0 0 !important;
+    display: block;
+    width: 90%;
+    max-width: 220px;
+    margin-bottom: 6px !important;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  #logoDP {
+    margin: 0 auto 0 auto !important;
+    display: block;
+    height: 48px !important;
+    max-width: 90px !important;
+  }
+}
 .footer-main {
   background: #1877f3;
   color: #fff;
