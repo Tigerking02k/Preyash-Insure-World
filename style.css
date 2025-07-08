@@ -135,9 +135,45 @@
   font-size: 2.7rem;
   line-height: 1.18;
   font-weight: bold;
-  color: #ffe6e6;
+  color: #ffea00;
   margin-top: 0.2rem;
   letter-spacing: 2px;
+  text-shadow: 0 2px 8px rgba(255, 234, 0, 0.3);
+  transition: all 0.3s ease;
+  animation: pulseGlow 2s ease-in-out infinite alternate;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+@keyframes pulseGlow {
+  0% {
+    text-shadow: 0 2px 8px rgba(255, 234, 0, 0.3);
+    transform: scale(1);
+  }
+  100% {
+    text-shadow: 0 4px 16px rgba(255, 234, 0, 0.5);
+    transform: scale(1.02);
+  }
+}
+
+.footer-visitor-count:hover {
+  color: #fff;
+  text-shadow: 0 4px 20px rgba(255, 255, 255, 0.6);
+  transform: scale(1.05);
+}
+
+.footer-visitor-count .plus-symbol {
+  font-size: 1.8rem;
+  font-weight: normal;
+  opacity: 0.9;
+  margin-top: -2px;
+  transition: all 0.3s ease;
+}
+
+.footer-visitor-count:hover .plus-symbol {
+  opacity: 1;
+  transform: scale(1.1);
 }
 .footer-bottom {
   text-align: center;

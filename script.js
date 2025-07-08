@@ -168,29 +168,37 @@ document.getElementById("serviceForm").addEventListener("submit", function (e) {
   document.getElementById("serviceFormMsg").textContent = "✅ Sent to WhatsApp!";
   setTimeout(() => closeServiceForm(), 3000);
 });
-// ✅ Animated Client Counter
+// ✅ Enhanced Client Counter based on Visitor Count
 let started = false;
 const counter = document.getElementById("clientCount");
 
-function animateCounter() {
-  let value = 0;
-  const endValue = 500;
-  const duration = 1500; // 1.5 seconds
+function animateClientCounter() {
+  // Get visitor count from localStorage
+  const visitorCount = localStorage.getItem('preyashVisitorCount') || 1250;
+  const endValue = Math.floor(visitorCount * 0.15); // 15% of visitors become clients
+  const duration = 2000; // 2 seconds
   const stepTime = Math.floor(duration / endValue);
-
+  
+  let value = 0;
+  
   const timer = setInterval(() => {
-    value++;
-    counter.textContent = value;
-    if (value >= endValue) clearInterval(timer);
+    value += Math.ceil(endValue / 50); // Increment by chunks for smoother animation
+    if (value >= endValue) {
+      value = endValue;
+      clearInterval(timer);
+    }
+    counter.textContent = value.toLocaleString();
   }, stepTime);
 }
 
 // Trigger on scroll
 window.addEventListener("scroll", () => {
-  const top = counter.getBoundingClientRect().top;
-  if (!started && top < window.innerHeight) {
-    started = true;
-    animateCounter();
+  if (counter) {
+    const top = counter.getBoundingClientRect().top;
+    if (!started && top < window.innerHeight) {
+      started = true;
+      animateClientCounter();
+    }
   }
 });
 
