@@ -1,3 +1,74 @@
+/* ===== Hero Section Animation ===== */
+.hero h2 {
+  position: relative;
+  display: inline-block;
+  font-size: 2.3rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #fff 20%, #ffe066 40%, #00e0c6 80%, #007bff 100%);
+  background-size: 200% auto;
+  color: #fff;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  animation: heroTextGradient 3.5s ease-in-out infinite alternate, heroTextPopIn 1.2s cubic-bezier(.68,-0.55,.27,1.55) 1, heroBlinkColor 1.3s linear infinite;
+@keyframes heroBlinkColor {
+  0% {
+    opacity: 1;
+    filter: drop-shadow(0 4px 24px #00408033);
+    background: linear-gradient(90deg, #fff 20%, #ffe066 40%, #00e0c6 80%, #007bff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  30% {
+    opacity: 0.3;
+    filter: drop-shadow(0 0px 0px #fff0);
+    background: linear-gradient(90deg, #ffe066 10%, #ff5e62 40%, #00e0c6 80%, #007bff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 4px 24px #00e0c633);
+    background: linear-gradient(90deg, #fff 10%, #00e0c6 40%, #ffe066 80%, #ff5e62 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  70% {
+    opacity: 0.3;
+    filter: drop-shadow(0 0px 0px #fff0);
+    background: linear-gradient(90deg, #ff5e62 10%, #ffe066 40%, #00e0c6 80%, #007bff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  100% {
+    opacity: 1;
+    filter: drop-shadow(0 4px 24px #00408033);
+    background: linear-gradient(90deg, #fff 20%, #ffe066 40%, #00e0c6 80%, #007bff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+  letter-spacing: 1px;
+  text-shadow: 0 4px 24px rgba(0, 64, 128, 0.18), 0 1px 0 #fff;
+}
+
+@keyframes heroTextGradient {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes heroTextPopIn {
+  0% { opacity: 0; transform: translateY(40px) scale(0.85); }
+  60% { opacity: 1; transform: translateY(-8px) scale(1.08); }
+  80% { transform: translateY(2px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
 /* --- Fix language selector overlap on mobile --- */
 @media (max-width: 600px) {
   header > div {

@@ -253,7 +253,7 @@ window.addEventListener('DOMContentLoaded', function() {
     document.querySelector('#testimonials .testimonial p').textContent = t.testimonial1;
     document.querySelector('#testimonials .testimonial h4').textContent = t.testimonialName1;
     // Contact form button
-    document.querySelector('#quoteForm button[type="submit"]').textContent = t.contactBtn;
+    document.querySelector('#quoteForm button[type="submit"]').textContent = 'Submit';
     // Footer copyright (bottom)
     var footerBottom = document.querySelector('.footer-bottom');
     if(footerBottom) footerBottom.innerHTML = t.footer;
@@ -286,6 +286,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
 <section class="hero">
   <h2>Your Trusted Multi-Brand Insurance Partner</h2>
+  <div style="height: 1rem;"></div>
   <p>We help you compare and choose the best insurance from top providers.</p>
   <a href="#contact" class="btn">Get a Free Quote</a>
 </section>
