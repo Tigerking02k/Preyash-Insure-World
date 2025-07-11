@@ -642,68 +642,78 @@ function shareVia(method) {
     <div class="footer-bottom">&copy; 2025 Preyash Insurance Services. All rights reserved.</div> 
   </footer>
   <script>
-    // Enhanced Visitor Counter with better functionality
+    // Hybrid Visitor Counter (Local + Global)
     function updateVisitorCount() {
-      try {
-        // Get current count from localStorage
-        let totalCount = localStorage.getItem('preyashVisitorCount') || 1250; // Start with a realistic number
-        let sessionVisited = sessionStorage.getItem('preyashSessionVisited');
-        
-        // Only increment if this is a new session
-        if (!sessionVisited) {
-          totalCount = parseInt(totalCount) + 1;
-          localStorage.setItem('preyashVisitorCount', totalCount);
-          sessionStorage.setItem('preyashSessionVisited', 'true');
-        }
-        
-        // Update the display with animation
-        const visitorElement = document.getElementById('visitorCountNumber');
-        if (visitorElement) {
-          // Animate the count update
-          const finalCount = totalCount;
-          const startCount = Math.max(0, finalCount - 50);
-          let currentCount = startCount;
-          
-          const animateCount = () => {
-            if (currentCount < finalCount) {
-              currentCount += Math.ceil((finalCount - currentCount) / 10);
-              if (currentCount > finalCount) currentCount = finalCount;
-              visitorElement.textContent = currentCount.toLocaleString();
-              requestAnimationFrame(animateCount);
-            } else {
-              visitorElement.textContent = finalCount.toLocaleString();
-            }
-          };
-          
-          animateCount();
-        }
-        
-        // Also update the client count in the "Why Us" section
-        const clientCountElement = document.getElementById('clientCount');
-        if (clientCountElement) {
-          const clientCount = Math.floor(totalCount * 0.15); // Estimate 15% of visitors become clients
-          clientCountElement.textContent = clientCount.toLocaleString();
-        }
-        
-      } catch (error) {
-        console.log('Visitor count update failed:', error);
-        // Fallback: set a default count if there's an error
-        const visitorElement = document.getElementById('visitorCountNumber');
-        if (visitorElement) {
-          visitorElement.textContent = '1,250';
-        }
+      // Get local count
+      let localCount = parseInt(localStorage.getItem('preyashVisitorCount')) || 1250;
+      
+      // Update local count if new session
+      if (!sessionStorage.getItem('sessionCounted')) {
+        localCount++;
+        localStorage.setItem('preyashVisitorCount', localCount.toString());
+        sessionStorage.setItem('sessionCounted', 'true');
+      }
+
+      // Update display immediately with local count
+      updateDisplayCount(localCount);
+
+      // Fetch global count from API
+      const namespace = 'preyash-insurance';
+      const key = 'visitor-count-v2';
+      
+      fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
+        .then(response => response.json())
+        .then(data => {
+          const globalCount = Math.max(data.value || 1250, localCount);
+          // Update local storage if global count is higher
+          if (globalCount > localCount) {
+            localStorage.setItem('preyashVisitorCount', globalCount.toString());
+            updateDisplayCount(globalCount);
+          }
+        })
+        .catch(error => {
+          console.log('Using local count due to API error:', error);
+          // Already showing local count, so no fallback needed
+        });
+    }
+
+    // Helper function to update display with animation
+    function updateDisplayCount(count) {
+      const visitorElement = document.getElementById('visitorCountNumber');
+      const clientCountElement = document.getElementById('clientCount');
+
+      if (visitorElement) {
+        // Animate the main visitor count
+        const finalCount = count;
+        const startCount = Math.max(0, finalCount - 50);
+        let currentCount = startCount;
+
+        const animateCount = () => {
+          if (currentCount < finalCount) {
+            currentCount += Math.ceil((finalCount - currentCount) / 10);
+            if (currentCount > finalCount) currentCount = finalCount;
+            visitorElement.textContent = currentCount.toLocaleString();
+            requestAnimationFrame(animateCount);
+          } else {
+            visitorElement.textContent = finalCount.toLocaleString();
+          }
+        };
+        animateCount();
+      }
+
+      // Update the client count (15% of visitors)
+      if (clientCountElement) {
+        const clientCount = Math.floor(count * 0.15);
+        clientCountElement.textContent = clientCount.toLocaleString();
       }
     }
-    
-    // Initialize visitor count when page loads
-    document.addEventListener('DOMContentLoaded', function() {
-      updateVisitorCount();
-    });
-    
-    // Also update when page becomes visible (for better tracking)
+
+    // Initialize counter when page loads
+    document.addEventListener('DOMContentLoaded', updateVisitorCount);
+
+    // Update when page becomes visible
     document.addEventListener('visibilitychange', function() {
       if (!document.hidden) {
-        // Small delay to ensure smooth animation
         setTimeout(updateVisitorCount, 100);
       }
     });
