@@ -202,7 +202,7 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// Updated company options for Contact Us panel
+// Updated company options for Contact Us and Popup panel
 const companyOptions = {
   life: [
     "Aviva Life Insurance Company India Ltd.",
@@ -271,9 +271,9 @@ const companyOptions = {
   ]
 };
 
-function filterCompanies() {
-  const type = document.getElementById("insuranceType").value;
-  const companySelect = document.getElementById("companySelect");
+function filterCompanies(selectId = "insuranceType", companySelectId = "companySelect") {
+  const type = document.getElementById(selectId).value;
+  const companySelect = document.getElementById(companySelectId);
   companySelect.innerHTML = '<option value="">Select Insurance Company</option>';
   if (companyOptions[type]) {
     companySelect.disabled = false;
@@ -288,8 +288,20 @@ function filterCompanies() {
   }
 }
 
-// Lock company select initially
+// Lock company select initially for both forms
 document.addEventListener('DOMContentLoaded', function() {
-  filterCompanies();
+  filterCompanies("insuranceType", "companySelect");
   document.getElementById('companySelect').disabled = true;
+  // For popup modal
+  filterCompanies("popupInsuranceType", "popupCompanySelect");
+  document.getElementById('popupCompanySelect').disabled = true;
+});
+
+// Contact Us section
+document.getElementById('insuranceType').addEventListener('change', function() {
+  filterCompanies("insuranceType", "companySelect");
+});
+// Popup modal section
+document.getElementById('popupInsuranceType').addEventListener('change', function() {
+  filterCompanies("popupInsuranceType", "popupCompanySelect");
 });

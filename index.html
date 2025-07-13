@@ -99,7 +99,7 @@
 </header>
 <script>
 // Animate logo sliding in from left on page load
-window.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
   var logo = document.getElementById('logoDP');
   logo.style.transform = 'translateX(-80px) scale(0.7)';
   setTimeout(function() {
@@ -116,7 +116,7 @@ window.addEventListener('DOMContentLoaded', function() {
       about: 'About Us',
       services: 'Our Services',
       brands: 'Top Brands',
-      contact: 'Contact Us',
+      contact: 'Contact',
       hero1: 'Your Trusted Multi-Brand Insurance Partner',
       hero2: 'We help you compare and choose the best insurance from top providers.',
       quote: 'Get a Free Quote',
@@ -130,6 +130,7 @@ window.addEventListener('DOMContentLoaded', function() {
         'Quick Claim Support',
         'Trusted by 500+ Clients'
       ],
+      whyusOnestop: '<strong>One Stop Insurance Solution</strong>',
       servicesTitle: 'Our Services',
       brandsTitle: 'Top Insurance Brands',
       reviewsTitle: 'Love Our Services? ❤️',
@@ -156,7 +157,7 @@ window.addEventListener('DOMContentLoaded', function() {
       quote: 'मुफ्त कोट प्राप्त करें',
       aboutTitle: 'हमारे बारे में',
       aboutDesc: 'हम गुजरात की विश्वसनीय एजेंसी हैं, जो LIC, HDFC Life, Tata AIA, ICICI, SBI Life और अधिक के लिए सेवाएं देती है।',
-      aboutDesc2: 'नमस्ते, मैं धर्मेश पंचाल हूं। मुझे भारतीय बीमा उद्योग में 15+ वर्ष का अनुभव है। मैं आपको भारत के शीर्ष बीमा प्रदाताओं से सर्वश्रेष्ठ बीमा चुनने और खरीदने में मदद कर सकता हूं। हम मल्टी ब्रांड मल्टी प्रोडक्ट सेल के लिए बीमा सलाहकार भी नियुक्त कर रहे हैं।',
+      aboutDesc2: 'नमस्ते, मैं धर्मेश पंचाल हूं। मुझे भारतीय बीमा उद्योग में 15+ वर्ष का अनुभव है। मैं आपको भारत के शीर्ष बीमा प्रदाताओं से सर्वश्रेष्ठ बीमा चुनने और खरीदने में मदद कर सकता हूं। हम मल्टी ब्रांड मल्टी प्रोडक्टsell के लिए बीमा सलाहकार भी नियुक्त कर रहे हैं।',
       whyus: 'प्रेयश इंश्योरेंस क्यों चुनें?',
       whyusList: [
         '15+ वर्षों का अनुभव',
@@ -164,6 +165,7 @@ window.addEventListener('DOMContentLoaded', function() {
         'त्वरित क्लेम सहायता',
         'विश्वासपात्र 500+ ग्राहक'
       ],
+      whyusOnestop: '<strong>वन स्टॉप इंश्योरेंस सॉल्यूशन</strong>',
       servicesTitle: 'हमारी सेवाएं',
       brandsTitle: 'शीर्ष बीमा ब्रांड्स',
       reviewsTitle: 'हमारी सेवाएं पसंद आईं? ❤️',
@@ -173,7 +175,7 @@ window.addEventListener('DOMContentLoaded', function() {
       testimonialsTitle: 'हमारे ग्राहक क्या कहते हैं',
       testimonial1: '"मुझे एक दिन में पॉलिसी मिल गई। शानदार सपोर्ट!"',
       testimonialName1: '- धर्मेश पंचाल, अहमदाबाद',
-      contactBtn: 'कोट प्राप्त करें',
+      contactBtn: 'Submit',
       footer: '© 2025 प्रेयश इंश्योरेंस सर्विसेज. सर्वाधिकार सुरक्षित.'
     },
     gu: {
@@ -198,6 +200,7 @@ window.addEventListener('DOMContentLoaded', function() {
         'ઝડપી ક્લેમ સપોર્ટ',
         'વિશ્વાસુ 500+ ક્લાયન્ટ'
       ],
+      whyusOnestop: '<strong>વન સ્ટોપ ઇન્શ્યોરન્સ સોલ્યુશન</strong>',
       servicesTitle: 'અમારી સેવાઓ',
       brandsTitle: 'ટોપ ઇન્શ્યોરન્સ બ્રાન્ડ્સ',
       reviewsTitle: 'અમારી સેવાઓ ગમી? ❤️',
@@ -207,13 +210,12 @@ window.addEventListener('DOMContentLoaded', function() {
       testimonialsTitle: 'અમારા ક્લાયન્ટ શું કહે છે',
       testimonial1: '"મને એક જ દિવસે પોલિસી મળી. અદ્ભુત સપોર્ટ!"',
       testimonialName1: '- ધર્મેશ પંચાલ, અમદાવાદ',
-      contactBtn: 'ક્વોટ મેળવો',
+      contactBtn: 'Submit',
       footer: '© 2025 પ્રેયશ ઇન્શ્યોરન્સ સર્વિસિસ. સર્વાધિકાર સુરક્ષિત.'
     }
   };
   const langSel = document.getElementById('languageSelect');
-  langSel.addEventListener('change', function() {
-    const lang = langSel.value;
+  function updateLanguageTexts(lang) {
     const t = translations[lang] || translations['en'];
     // Navbar (update all nav links for language)
     var navLinks = document.querySelectorAll('nav ul li a');
@@ -225,35 +227,69 @@ window.addEventListener('DOMContentLoaded', function() {
       navLinks[4].textContent = t.contact;
     }
     // Main Title
-    document.getElementById('mainTitle').textContent = t.mainTitle;
+    var mainTitle = document.getElementById('mainTitle');
+    if(mainTitle) mainTitle.textContent = t.mainTitle;
     // Hero
-    document.querySelector('.hero h2').textContent = t.hero1;
-    document.querySelector('.hero p').textContent = t.hero2;
-    document.querySelector('.hero .btn').textContent = t.quote;
+    var heroH2 = document.querySelector('.hero h2');
+    if(heroH2) heroH2.textContent = t.hero1;
+    var heroP = document.querySelector('.hero p');
+    if(heroP) heroP.textContent = t.hero2;
+    var heroBtn = document.querySelector('.hero .btn');
+    if(heroBtn) heroBtn.textContent = t.quote;
+    // Floating Get a Free Quote button
+    var floatBtn = document.getElementById('openQuotePopupBtn');
+    if(floatBtn) floatBtn.textContent = t.quote;
+    // Popup modal title
+    var popupTitle = document.querySelector('#quotePopupModal h3');
+    if(popupTitle) popupTitle.textContent = t.quote;
+    // Popup submit button
+    var popupSubmit = document.querySelector('#quotePopupForm button[type="submit"]');
+    if(popupSubmit) popupSubmit.textContent = t.contactBtn;
     // About section
-    document.querySelector('#about h2').textContent = t.aboutTitle;
-    document.querySelectorAll('#about p')[0].textContent = t.aboutDesc;
-    document.querySelectorAll('#about p')[1].textContent = t.aboutDesc2;
+    var aboutH2 = document.querySelector('#about h2');
+    if(aboutH2) aboutH2.textContent = t.aboutTitle;
+    var aboutPs = document.querySelectorAll('#about p');
+    if(aboutPs[0]) aboutPs[0].textContent = t.aboutDesc;
+    if(aboutPs[1]) aboutPs[1].textContent = t.aboutDesc2;
     // Why Us section
-    document.querySelector('#whyus h2').textContent = t.whyus;
+    var whyusH2 = document.querySelector('#whyus h2');
+    if(whyusH2) whyusH2.textContent = t.whyus;
     const whyusList = document.querySelectorAll('#whyus ul li');
-    t.whyusList.forEach((item, i) => { if(whyusList[i]) whyusList[i].innerHTML = item; });
+    if(whyusList && t.whyusList) {
+      whyusList.forEach((li, i) => {
+        if (i === 2) {
+          li.innerHTML = t.whyusOnestop || 'One Stop Insurance Solution';
+        } else if (t.whyusList[i < 2 ? i : i - 1]) {
+          li.innerHTML = t.whyusList[i < 2 ? i : i - 1];
+        }
+      });
+    }
     // Services section
-    document.querySelector('#services h2').textContent = t.servicesTitle;
+    var servicesH2 = document.querySelector('#services h2');
+    if(servicesH2) servicesH2.textContent = t.servicesTitle;
     // Brands section
-    document.querySelector('#brands h2').textContent = t.brandsTitle;
+    var brandsH2 = document.querySelector('#brands h2');
+    if(brandsH2) brandsH2.textContent = t.brandsTitle;
     // Reviews section
-    document.querySelector('#reviews h2').textContent = t.reviewsTitle;
-    document.querySelector('#reviews p').textContent = t.reviewsDesc;
-    document.querySelector('.google-review-btn').textContent = t.reviewBtn;
+    var reviewsH2 = document.querySelector('#reviews h2');
+    if(reviewsH2) reviewsH2.textContent = t.reviewsTitle;
+    var reviewsP = document.querySelector('#reviews p');
+    if(reviewsP) reviewsP.textContent = t.reviewsDesc;
+    var reviewBtn = document.querySelector('.google-review-btn');
+    if(reviewBtn) reviewBtn.textContent = t.reviewBtn;
     // Contact section
-    document.querySelector('#contact h2').textContent = t.contactTitle;
+    var contactH2 = document.querySelector('#contact h2');
+    if(contactH2) contactH2.textContent = t.contactTitle;
     // Testimonials section
-    document.querySelector('#testimonials h2').textContent = t.testimonialsTitle;
-    document.querySelector('#testimonials .testimonial p').textContent = t.testimonial1;
-    document.querySelector('#testimonials .testimonial h4').textContent = t.testimonialName1;
+    var testimonialsH2 = document.querySelector('#testimonials h2');
+    if(testimonialsH2) testimonialsH2.textContent = t.testimonialsTitle;
+    var testimonialP = document.querySelector('#testimonials .testimonial p');
+    if(testimonialP) testimonialP.textContent = t.testimonial1;
+    var testimonialH4 = document.querySelector('#testimonials .testimonial h4');
+    if(testimonialH4) testimonialH4.textContent = t.testimonialName1;
     // Contact form button
-    document.querySelector('#quoteForm button[type="submit"]').textContent = 'Submit';
+    var contactFormBtn = document.querySelector('#quoteForm button[type="submit"]');
+    if(contactFormBtn) contactFormBtn.textContent = t.contactBtn;
     // Footer copyright (bottom)
     var footerBottom = document.querySelector('.footer-bottom');
     if(footerBottom) footerBottom.innerHTML = t.footer;
@@ -266,10 +302,7 @@ window.addEventListener('DOMContentLoaded', function() {
     // Profile section title
     var profileTitle = document.querySelector('#profile h2');
     if(profileTitle) profileTitle.textContent = t.profile || t.about;
-
     // Footer Visitor Count and Location Map headings
-    // Find all .footer-heading elements and update by order:
-    // 1st: Contact, 2nd: Visitor Count, 3rd: Location Map
     var footerHeadings = document.querySelectorAll('.footer-col .footer-heading');
     if (footerHeadings.length >= 3) {
       // Contact heading already set above
@@ -278,18 +311,111 @@ window.addEventListener('DOMContentLoaded', function() {
       // 3rd: Location Map
       footerHeadings[2].textContent = t.locationMap || 'Location Map';
     }
+  }
+  // Set initial language on page load
+  updateLanguageTexts(langSel.value);
+  langSel.addEventListener('change', function() {
+    updateLanguageTexts(langSel.value);
   });
 });
 </script>
 
 <div style="height: 5vh;"></div>
 
+
 <section class="hero">
-  <h2>Your Trusted Multi-Brand Insurance Partner</h2>
+  <h2 class="blinking-hero-text">Your Trusted Multi-Brand Insurance Partner</h2>
   <div style="height: 1rem;"></div>
   <p>We help you compare and choose the best insurance from top providers.</p>
-  <a href="#contact" class="btn">Get a Free Quote</a>
 </section>
+
+<!-- Move Get a Free Quote button above share button -->
+<style>
+  /* Blinking animation for Get a Free Quote button - now matches site palette */
+  @keyframes blink-glow {
+    0%, 100% {
+      box-shadow: 0 0 10px 2px #007bff, 0 2px 8px rgba(0,0,0,0.10);
+      filter: brightness(1.05);
+      background: linear-gradient(135deg,#004080 60%,#007bff 100%);
+    }
+    50% {
+      box-shadow: 0 0 18px 6px #ffea00, 0 2px 12px rgba(0,0,0,0.13);
+      filter: brightness(1.13);
+      background: linear-gradient(135deg,#007bff 60%,#004080 100%);
+    }
+  }
+  #get-quote-btn-float .btn.blinking-quote-btn {
+    animation: blink-glow 1.2s infinite;
+    border: 2px solid #ffea00;
+    outline: 0;
+    background: linear-gradient(135deg,#004080 60%,#007bff 100%) !important;
+    color: #fff !important;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+  /* Blinking animation for hero text */
+  @keyframes blink-hero-text {
+    0%, 100% {
+      color: #004080;
+      text-shadow: 0 0 10px #007bff, 0 2px 8px #fff0;
+    }
+    50% {
+      color: #ffffff;
+      text-shadow: 0 0 18px #ffea00e6, 0 2px 12px #007bff99;
+    }
+  }
+  .blinking-hero-text {
+    animation: blink-hero-text 1.3s infinite;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: color 0.2s, text-shadow 0.2s;
+  }
+</style>
+<div id="get-quote-btn-float" style="position: fixed; bottom: 28px; right: 28px; z-index: 9999;">
+  <button id="openQuotePopupBtn" class="btn blinking-quote-btn" style="border-radius: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.13); padding: 14px 28px; font-size: 1.15rem; display: inline-block; margin-bottom: 10px; transition: background 0.2s;">Get a Free Quote</button>
+</div>
+
+<!-- Popup Modal for Get a Free Quote -->
+<div id="quotePopupModal" class="modal" style="display:none; position:fixed; z-index:10001; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.35); align-items:center; justify-content:center;">
+  <div class="modal-content" style="background:#fff; border-radius:18px; max-width:380px; width:95vw; margin:auto; padding:28px 18px 18px 18px; box-shadow:0 8px 32px rgba(0,0,0,0.18); position:relative;">
+    <span class="close" id="closeQuotePopupBtn" style="position:absolute; top:10px; right:18px; font-size:2rem; color:#007bff; cursor:pointer;">&times;</span>
+    <h3 style="color:#004080; text-align:center; margin-bottom:18px;">Get a Free Quote</h3>
+    <form id="quotePopupForm" autocomplete="off">
+      <input type="text" name="name" placeholder="Name" required style="width:100%;margin-bottom:10px;padding:8px 12px;border-radius:8px;border:1px solid #bbb;" />
+      <input type="tel" name="phone" placeholder="Phone Number" required maxlength="10" pattern="[0-9]{10}" inputmode="numeric" style="width:100%;margin-bottom:10px;padding:8px 12px;border-radius:8px;border:1px solid #bbb;" />
+      <div style="margin-bottom:10px;">
+        <input type="tel" name="whatsapp" id="popupWhatsapp" placeholder="WhatsApp Number" required maxlength="10" pattern="[0-9]{10}" inputmode="numeric" style="width:100%;padding:8px 12px;border-radius:8px;border:1px solid #bbb; margin-bottom:0;" />
+        <div style="margin-top:6px;">
+          <label style="font-size:1rem; display:inline-flex; align-items:center; gap:6px; margin:0; white-space:nowrap;">
+            <input type="checkbox" id="sameAsPhonePopup" style="margin-right:4px; width:22px; height:22px; accent-color:#007bff;" />
+            <span>Same as Phone Number</span>
+          </label>
+        </div>
+      </div>
+      <input type="date" name="dob" placeholder="Date of Birth" required style="width:100%;margin-bottom:10px;padding:8px 12px;border-radius:8px;border:1px solid #bbb;" />
+      <select name="gender" required style="width:100%;margin-bottom:10px;padding:8px 12px;border-radius:8px;border:1px solid #bbb;">
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Transgender">Transgender</option>
+      </select>
+      <input type="email" name="email" placeholder="Email (required)" required style="width:100%;margin-bottom:10px;padding:8px 12px;border-radius:8px;border:1px solid #bbb;" />
+      <select id="popupInsuranceType" name="insuranceType" required style="width:100%;margin-bottom:10px;padding:8px 12px;border-radius:8px;border:1px solid #bbb;">
+        <option value="">Select Insurance Type</option>
+        <option value="life">Life Insurance</option>
+        <option value="health">Health Insurance</option>
+        <option value="motor">Motor Insurance</option>
+        <option value="travel">Travel Insurance</option>
+        <option value="corporate">Corporate Insurance</option>
+      </select>
+      <select id="popupCompanySelect" name="company" required style="width:100%;margin-bottom:10px;padding:8px 12px;border-radius:8px;border:1px solid #bbb;">
+        <option value="">Select Insurance Company</option>
+      </select>
+      <button type="submit" style="width:100%;background:linear-gradient(135deg,#004080 60%,#007bff 100%);color:#fff;font-weight:bold;border:none;border-radius:8px;padding:10px 0;font-size:1.1rem;cursor:pointer;">Submit</button>
+      <p id="quotePopupMsg" style="margin-top:10px;font-size:1em;text-align:center;"></p>
+    </form>
+  </div>
+</div>
 
 
 
@@ -363,6 +489,7 @@ window.addEventListener('DOMContentLoaded', function() {
   <ul>
     <li><span><strong>15+ Years of Experience</strong></span></li>
     <li>Compare <strong>15+ Top Brands</strong></li>
+    <li><strong>One Stop Insurance Solution</strong></li>
     <li><strong>Quick Claim Support</strong></li>
     <li>Trusted by <strong>500+ Clients</strong></li>
   </ul>
@@ -509,8 +636,8 @@ window.addEventListener('DOMContentLoaded', function() {
 </footer> -->
 
 
-<!-- Share This Page Floating Button (bottom-right) -->
-<div id="share-float-btn" style="position: fixed; bottom: 28px; right: 28px; z-index: 9999;">
+<!-- Share This Page Floating Button (above Get a Free Quote) -->
+<div id="share-float-btn" style="position: fixed; bottom: 128px; right: 28px; z-index: 10000;">
   <button id="share-main-btn" style="background: linear-gradient(135deg,#007bff 60%,#00e0c6 100%); border: none; border-radius: 50%; box-shadow: 0 2px 12px rgba(0,0,0,0.18); width: 58px; height: 58px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: box-shadow 0.2s;">
     <img src="images/shareSVG.svg" alt="Share" width="32" height="32" />
   </button>
@@ -597,16 +724,109 @@ function shareVia(method) {
 }
 </script>
 
+<script>
+// Popup logic for Get a Free Quote button
+document.getElementById('openQuotePopupBtn').onclick = function() {
+  document.getElementById('quotePopupModal').style.display = 'flex';
+};
+document.getElementById('closeQuotePopupBtn').onclick = function() {
+  document.getElementById('quotePopupModal').style.display = 'none';
+  document.getElementById('quotePopupForm').reset();
+  document.getElementById('quotePopupMsg').textContent = '';
+};
+window.onclick = function(event) {
+  var modal = document.getElementById('quotePopupModal');
+  if (event.target === modal) {
+    modal.style.display = 'none';
+    document.getElementById('quotePopupForm').reset();
+    document.getElementById('quotePopupMsg').textContent = '';
+  }
+};
+// Same as Phone logic
+document.getElementById('sameAsPhonePopup').addEventListener('change', function() {
+  var phone = document.querySelector('#quotePopupForm input[name="phone"]').value;
+  var whatsapp = document.getElementById('popupWhatsapp');
+  if (this.checked) {
+    whatsapp.value = phone;
+    whatsapp.readOnly = true;
+    whatsapp.style.background = '#f3f3f3';
+  } else {
+    whatsapp.readOnly = false;
+    whatsapp.style.background = '';
+  }
+});
+document.querySelector('#quotePopupForm input[name="phone"]').addEventListener('input', function() {
+  var same = document.getElementById('sameAsPhonePopup');
+  var whatsapp = document.getElementById('popupWhatsapp');
+  if (same.checked) {
+    whatsapp.value = this.value;
+  }
+});
+// Insurance company filter logic (reuse from contact form)
+function filterPopupCompanies() {
+  var type = document.getElementById('popupInsuranceType').value;
+  var companySelect = document.getElementById('popupCompanySelect');
+  var options = {
+    life: ["LIC", "HDFC Life", "Tata AIA", "ICICI Prudential", "SBI Life"],
+    health: ["HDFC Ergo", "Niva Bupa", "Aditya Birla", "Star Health", "Care Health"],
+    motor: ["HDFC Ergo", "ICICI Lombard", "TATA AIG", "Bajaj Allianz", "Reliance"],
+    travel: ["HDFC Ergo", "ICICI Lombard", "TATA AIG", "Bajaj Allianz"],
+    corporate: ["HDFC Ergo", "ICICI Lombard", "TATA AIG", "Bajaj Allianz", "Oriental Insurance"]
+  };
+  companySelect.innerHTML = '<option value="">Select Insurance Company</option>';
+  if (options[type]) {
+    options[type].forEach(function(opt) {
+      var o = document.createElement('option');
+      o.value = opt;
+      o.textContent = opt;
+      companySelect.appendChild(o);
+    });
+  }
+}
+document.getElementById('popupInsuranceType').addEventListener('change', filterPopupCompanies);
+// Form submit handler (demo only)
+document.getElementById('quotePopupForm').onsubmit = function(e) {
+  e.preventDefault();
+  var form = e.target;
+  var name = form.name.value.trim();
+  var phone = form.phone.value.trim();
+  var whatsapp = form.whatsapp.value.trim();
+  var dob = form.dob.value.trim();
+  var gender = form.gender.value;
+  var email = form.email.value.trim();
+  var insuranceType = form.insuranceType.value;
+  var company = form.company.value;
+  // WhatsApp message formatting
+  var msg =
+    '*New Free Quote Request*%0A' +
+    'Name: ' + encodeURIComponent(name) + '%0A' +
+    'Phone: ' + encodeURIComponent(phone) + '%0A' +
+    'WhatsApp: ' + encodeURIComponent(whatsapp) + '%0A' +
+    'DOB: ' + encodeURIComponent(dob) + '%0A' +
+    'Gender: ' + encodeURIComponent(gender) + '%0A' +
+    'Email: ' + encodeURIComponent(email) + '%0A' +
+    'Insurance Type: ' + encodeURIComponent(insuranceType) + '%0A' +
+    'Company: ' + encodeURIComponent(company);
+  var waUrl = 'https://wa.me/919722574788?text=' + msg;
+  window.open(waUrl, '_blank');
+  document.getElementById('quotePopupMsg').textContent = 'Redirecting to WhatsApp...';
+  setTimeout(function(){
+    document.getElementById('quotePopupModal').style.display = 'none';
+    document.getElementById('quotePopupForm').reset();
+    document.getElementById('quotePopupMsg').textContent = '';
+  }, 1800);
+};
+</script>
 <script src="script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>AOS.init();</script>
   <!-- Modern Footer for Preyash Insurance Services -->
   <footer class="footer-main">
-    <div class="footer-content" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 24px; max-width: 1200px; margin: 0 auto; padding: 24px 20px 16px 20px;">
-      <div class="footer-col logo-col" style="flex: 1 1 260px; min-width: 260px; max-width: 300px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px;">
-        <img src="images/footerLogo.png" alt="Preyash Insurance Logo" class="footer-logo" style="max-width: 120px; width: 100%; height: auto; margin-bottom: 8px; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" onerror="this.style.display='none'" />
-        <div class="footer-brand-name" style="font-size: 1.25rem; font-weight: bold; color: #fff; margin-bottom: 2px;">Preyash Insurance Services</div>
-        <div class="footer-location" style="color: #e0e0e0; font-size: 1rem; margin-bottom: 4px;">Ahmedabad, Gujarat</div>
+    <div class="footer-content" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 32px; max-width: 1200px; margin: 0 auto; padding: 32px 12px 18px 12px;">
+      <div class="footer-col logo-col" style="flex: 1 1 220px; min-width: 220px; max-width: 320px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px;">
+        <img src="images/footerLogo.png" alt="Preyash Insurance Logo" class="footer-logo" style="max-width: 120px; width: 100%; height: auto; margin-bottom: 8px; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07);" onerror="this.style.display='none'" />
+        <div class="footer-brand-name" style="font-size: 1.25rem; font-weight: bold; color: #fff;">Preyash Insurance Services</div>
+        <div class="footer-location" style="color: #e0e0e0; font-size: 1rem;">Ahmedabad, Gujarat</div>
         <div class="footer-social" style="display: flex; gap: 12px; margin-top: 8px;">
           <a href="https://wa.me/919722574788" target="_blank" title="WhatsApp" class="footer-social-icon whatsapp" style="background: #25d366; border-radius: 50%; padding: 6px; display: flex; align-items: center; justify-content: center;">
             <img src="images/whatsapp%20logo.jpeg" alt="WhatsApp" style="width: 28px; height: 28px;" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg'" />
@@ -622,96 +842,158 @@ function shareVia(method) {
           </a>
         </div>
       </div>
-      <div class="footer-col contact-col" style="flex: 1 1 260px; min-width: 260px; max-width: 300px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px;">
-        <div class="footer-heading" style="color:#fff; font-size:1.1rem; font-weight:600; letter-spacing:1px; margin-bottom:10px;">CONTACT</div>
-        <div class="footer-contact-item" style="color:#e0e0e0; margin-bottom:6px;"><span style="color:#fff;">Email:</span> <a href="mailto:dpinsurance2133@gmail.com" style="color:#fff; text-decoration:underline; text-underline-offset: 2px;">dpinsurance2133@gmail.com</a></div>
-        <div class="footer-contact-item" style="color:#e0e0e0; margin-bottom:10px;"><span style="color:#fff;">Phone:</span> <a href="tel:9722574788" style="color:#fff; text-decoration:underline; text-underline-offset: 2px;">9722574788</a></div>
+      <div class="footer-col contact-col" style="flex: 1 1 220px; min-width: 220px; max-width: 320px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px;">
+        <div class="footer-heading" style="color:#fff; font-size:1.1rem; font-weight:600; letter-spacing:1px; margin-bottom:8px;">CONTACT</div>
+        <div class="footer-contact-item" style="color:#e0e0e0; margin-bottom:4px;"><span style="color:#fff;">Email:</span> <a href="mailto:dpinsurance2133@gmail.com" style="color:#fff; text-decoration:underline;">dpinsurance2133@gmail.com</a></div>
+        <div class="footer-contact-item" style="color:#e0e0e0; margin-bottom:8px;"><span style="color:#fff;">Phone:</span> <a href="tel:9722574788" style="color:#fff; text-decoration:underline;">9722574788</a></div>
         <div class="footer-heading" style="margin-top:1.2rem; color:#fff; font-size:1.1rem; font-weight:600;">Visitor Count</div>
-        <div id="visitorCount" class="footer-visitor-count" style="color:#ffea00; font-size:2.2rem; font-weight:bold; margin-bottom:10px; position:relative; cursor:help;" title="Live visitor count - updates with each visit">
+        <div id="visitorCount" class="footer-visitor-count" style="color:#ffea00; font-size:2.2rem; font-weight:bold; margin-bottom:8px; position:relative; cursor:help;" title="Live visitor count - updates with each visit">
           <span id="visitorCountNumber">0</span>
           <span class="plus-symbol">+</span>
         </div>
       </div>
-      <div class="footer-col map-col" style="flex: 1 1 260px; min-width: 260px; max-width: 300px; display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.03); padding: 16px; border-radius: 12px;">
-        <div class="footer-heading" style="color:#fff; font-size:1.3rem; font-weight:600; margin-bottom: 12px; text-align: center;">Location Map</div>
-        <div class="footer-map-embed" style="width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 4px;">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.024964024052!2d72.5495403!3d23.0890833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e835ac6ba0107%3A0x4afff16c99e1ee29!2sPREYASH%20Insurance%20Services%20and%20Investment%20Saathi%20Gujarat!5e0!3m2!1sen!2sin!4v1720340000000!5m2!1sen!2sin" style="width:240px; height:240px; border:0; border-radius:10px; display:block; box-shadow:0 2px 8px rgba(0,0,0,0.1); aspect-ratio:1/1; background: #fff;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="footer-col map-col" style="flex: 1 1 260px; min-width: 220px; max-width: 340px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px;">
+        <div class="footer-heading" style="color:#fff; font-size:1.1rem; font-weight:600;">Location Map</div>
+        <div class="footer-map-embed" style="margin-top:8px; width:100%; max-width:100%;">
+          <div class="footer-map-square" style="position:relative; width:100%; max-width:260px; aspect-ratio:1/1; margin:auto; border-radius:18px; overflow:hidden; border:2.5px solid #007bff; box-shadow:0 6px 24px rgba(0,0,0,0.15); background:#fff;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.024964024052!2d72.5495403!3d23.0890833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e835ac6ba0107%3A0x4afff16c99e1ee29!2sPREYASH%20Insurance%20Services%20and%20Investment%20Saathi%20Gujarat!5e0!3m2!1sen!2sin!4v1720340000000!5m2!1sen!2sin" style="border:0; width:100%; height:100%; display:block;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div style="margin-top:10px; text-align:center;">
+            <a href="https://goo.gl/maps/2QwQwQwQwQwQwQwQ7" target="_blank" style="color:#007bff; font-weight:600; text-decoration:underline; font-size:1rem;">View Larger Map</a>
+          </div>
+          <style>
+            .footer-map-square { aspect-ratio: 1/1; }
+            @media (max-width: 600px) {
+              .footer-map-square { max-width: 90vw; }
+            }
+          </style>
         </div>
+        <style>
+          @media (max-width: 600px) {
+            .footer-map-embed iframe {
+              height: 120px !important;
+            }
+          }
+        </style>
       </div>
     </div>
     <div class="footer-bottom">&copy; 2025 Preyash Insurance Services. All rights reserved.</div> 
   </footer>
   <script>
-    // Hybrid Visitor Counter (Local + Global)
+    // Enhanced Visitor Counter with better functionality
     function updateVisitorCount() {
-      // Get local count
-      let localCount = parseInt(localStorage.getItem('preyashVisitorCount')) || 1250;
-      
-      // Update local count if new session
-      if (!sessionStorage.getItem('sessionCounted')) {
-        localCount++;
-        localStorage.setItem('preyashVisitorCount', localCount.toString());
-        sessionStorage.setItem('sessionCounted', 'true');
-      }
-
-      // Update display immediately with local count
-      updateDisplayCount(localCount);
-
-      // Fetch global count from API
-      const namespace = 'preyash-insurance';
-      const key = 'visitor-count-v2';
-      
-      fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
-        .then(response => response.json())
-        .then(data => {
-          const globalCount = Math.max(data.value || 1250, localCount);
-          // Update local storage if global count is higher
-          if (globalCount > localCount) {
-            localStorage.setItem('preyashVisitorCount', globalCount.toString());
-            updateDisplayCount(globalCount);
-          }
-        })
-        .catch(error => {
-          console.log('Using local count due to API error:', error);
-          // Already showing local count, so no fallback needed
-        });
-    }
-
-    // Helper function to update display with animation
-    function updateDisplayCount(count) {
-      const visitorElement = document.getElementById('visitorCountNumber');
-      const clientCountElement = document.getElementById('clientCount');
-
-      if (visitorElement) {
-        // Animate the main visitor count
-        const finalCount = count;
-        const startCount = Math.max(0, finalCount - 50);
-        let currentCount = startCount;
-
-        const animateCount = () => {
-          if (currentCount < finalCount) {
-            currentCount += Math.ceil((finalCount - currentCount) / 10);
-            if (currentCount > finalCount) currentCount = finalCount;
-            visitorElement.textContent = currentCount.toLocaleString();
-            requestAnimationFrame(animateCount);
-          } else {
-            visitorElement.textContent = finalCount.toLocaleString();
-          }
-        };
-        animateCount();
-      }
-
-      // Update the client count (15% of visitors)
-      if (clientCountElement) {
-        const clientCount = Math.floor(count * 0.15);
-        clientCountElement.textContent = clientCount.toLocaleString();
+      try {
+        // Get current count from localStorage
+        let totalCount = localStorage.getItem('preyashVisitorCount') || 1250; // Start with a realistic number
+        let sessionVisited = sessionStorage.getItem('preyashSessionVisited');
+        
+        // Only increment if this is a new session
+        if (!sessionVisited) {
+          totalCount = parseInt(totalCount) + 1;
+          localStorage.setItem('preyashVisitorCount', totalCount);
+          sessionStorage.setItem('preyashSessionVisited', 'true');
+        }
+        
+        // Update the display with animation
+        const visitorElement = document.getElementById('visitorCountNumber');
+        if (visitorElement) {
+          // Animate the count update
+          const finalCount = totalCount;
+          const startCount = Math.max(0, finalCount - 50);
+          let currentCount = startCount;
+          
+          const animateCount = () => {
+            if (currentCount < finalCount) {
+              currentCount += Math.ceil((finalCount - currentCount) / 10);
+              if (currentCount > finalCount) currentCount = finalCount;
+              visitorElement.textContent = currentCount.toLocaleString();
+              requestAnimationFrame(animateCount);
+            } else {
+              visitorElement.textContent = finalCount.toLocaleString();
+            }
+          };
+          
+          animateCount();
+        }
+        
+        // Also update the client count in the "Why Us" section
+        const clientCountElement = document.getElementById('clientCount');
+        if (clientCountElement) {
+          const clientCount = Math.floor(totalCount * 0.15); // Estimate 15% of visitors become clients
+          clientCountElement.textContent = clientCount.toLocaleString();
+        }
+        
+      } catch (error) {
+        console.log('Visitor count update failed:', error);
+        // Fallback: set a default count if there's an error
+        const visitorElement = document.getElementById('visitorCountNumber');
+        if (visitorElement) {
+          visitorElement.textContent = '1,250';
+        }
       }
     }
-
-    // Initialize counter when page loads
-    document.addEventListener('DOMContentLoaded', updateVisitorCount);
-
-    // Update when page becomes visible
+    
+    // Initialize visitor count when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      updateVisitorCount();
+    });
+    
+    // Also update when page becomes visible (for better tracking)
+    document.addEventListener('visibilitychange', function() {
+      if (!document.hidden) {
+        // Small delay to ensure smooth animation
+        setTimeout(updateVisitorCount, 100);
+      }
+    });
+    // Global Visitor Counter using backend API
+    async function updateVisitorCount() {
+      try {
+        // Only increment for new session
+        let sessionVisited = sessionStorage.getItem('preyashSessionVisited');
+        let response;
+        if (!sessionVisited) {
+          response = await fetch('http://localhost:3001/api/visitor-count', { method: 'POST' });
+          sessionStorage.setItem('preyashSessionVisited', 'true');
+        } else {
+          response = await fetch('http://localhost:3001/api/visitor-count');
+        }
+        const data = await response.json();
+        let totalCount = data.count || 1250;
+        // Animate the count update
+        const visitorElement = document.getElementById('visitorCountNumber');
+        if (visitorElement) {
+          const finalCount = totalCount;
+          const startCount = Math.max(0, finalCount - 50);
+          let currentCount = startCount;
+          const animateCount = () => {
+            if (currentCount < finalCount) {
+              currentCount += Math.ceil((finalCount - currentCount) / 10);
+              if (currentCount > finalCount) currentCount = finalCount;
+              visitorElement.textContent = currentCount.toLocaleString();
+              requestAnimationFrame(animateCount);
+            } else {
+              visitorElement.textContent = finalCount.toLocaleString();
+            }
+          };
+          animateCount();
+        }
+        // Also update the client count in the "Why Us" section
+        const clientCountElement = document.getElementById('clientCount');
+        if (clientCountElement) {
+          const clientCount = Math.floor(totalCount * 0.15);
+          clientCountElement.textContent = clientCount.toLocaleString();
+        }
+      } catch (error) {
+        console.log('Visitor count update failed:', error);
+        const visitorElement = document.getElementById('visitorCountNumber');
+        if (visitorElement) {
+          visitorElement.textContent = '1,250';
+        }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      updateVisitorCount();
+    });
     document.addEventListener('visibilitychange', function() {
       if (!document.hidden) {
         setTimeout(updateVisitorCount, 100);
