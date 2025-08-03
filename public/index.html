@@ -9,11 +9,12 @@
   <meta name="keywords" content="Insurance Gujarat, LIC Agent, Life Insurance, Health Insurance, HDFC, Tata AIA">
 
    <!-- ✅ Favicon -->
-  <link rel="icon" href="images/favicon.ico" />
-
-  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/animations.css" />
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  
+  <script src="/js/main.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
 </head>
 <body>
 <div class="floating-bg-text">
@@ -847,8 +848,8 @@ document.getElementById('quotePopupForm').onsubmit = function(e) {
         <div class="footer-contact-item" style="color:#e0e0e0; margin-bottom:4px;"><span style="color:#fff;">Email:</span> <a href="mailto:dpinsurance2133@gmail.com" style="color:#fff; text-decoration:underline;">dpinsurance2133@gmail.com</a></div>
         <div class="footer-contact-item" style="color:#e0e0e0; margin-bottom:8px;"><span style="color:#fff;">Phone:</span> <a href="tel:9722574788" style="color:#fff; text-decoration:underline;">9722574788</a></div>
         <div class="footer-heading" style="margin-top:1.2rem; color:#fff; font-size:1.5rem; font-weight:600;">Visitor Count</div>
-        <div id="visitorCount" class="footer-visitor-count" style="color:#ffea00; font-size:2.2rem; font-weight:bold; margin-bottom:8px; position:relative; cursor:help;" title="Live visitor count - updates with each visit">
-          <span id="visitorCountNumber">0</span>
+        <div class="footer-visitor-count" style="color:#ffea00; font-size:2.2rem; font-weight:bold; margin-bottom:8px; position:relative; cursor:help;" title="Live visitor count - updates with each visit">
+          <div id="visitorCount">0</div>
           <span class="plus-symbol">+</span>
         </div>
       </div>
@@ -945,59 +946,8 @@ document.getElementById('quotePopupForm').onsubmit = function(e) {
         setTimeout(updateVisitorCount, 100);
       }
     });
-    // Global Visitor Counter using backend API
-    async function updateVisitorCount() {
-      try {
-        // Only increment for new session
-        let sessionVisited = sessionStorage.getItem('preyashSessionVisited');
-        let response;
-        if (!sessionVisited) {
-          response = await fetch('http://localhost:3001/api/visitor-count', { method: 'POST' });
-          sessionStorage.setItem('preyashSessionVisited', 'true');
-        } else {
-          response = await fetch('http://localhost:3001/api/visitor-count');
-        }
-        const data = await response.json();
-        let totalCount = data.count || 1250;
-        // Animate the count update
-        const visitorElement = document.getElementById('visitorCountNumber');
-        if (visitorElement) {
-          const finalCount = totalCount;
-          const startCount = Math.max(0, finalCount - 50);
-          let currentCount = startCount;
-          const animateCount = () => {
-            if (currentCount < finalCount) {
-              currentCount += Math.ceil((finalCount - currentCount) / 10);
-              if (currentCount > finalCount) currentCount = finalCount;
-              visitorElement.textContent = currentCount.toLocaleString();
-              requestAnimationFrame(animateCount);
-            } else {
-              visitorElement.textContent = finalCount.toLocaleString();
-            }
-          };
-          animateCount();
-        }
-        // Also update the client count in the "Why Us" section
-        const clientCountElement = document.getElementById('clientCount');
-        if (clientCountElement) {
-          const clientCount = Math.floor(totalCount * 0.15);
-          clientCountElement.textContent = clientCount.toLocaleString();
-        }
-      } catch (error) {
-        console.log('Visitor count update failed:', error);
-        const visitorElement = document.getElementById('visitorCountNumber');
-        if (visitorElement) {
-          visitorElement.textContent = '1,250';
-        }
-      }
-    }
-    document.addEventListener('DOMContentLoaded', function() {
-      updateVisitorCount();
+    // Visitor counter functionality moved to script.js
     });
-    document.addEventListener('visibilitychange', function() {
-      if (!document.hidden) {
-        setTimeout(updateVisitorCount, 100);
-      }
     });
   </script>
 </body>
