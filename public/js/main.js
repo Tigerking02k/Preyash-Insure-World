@@ -1,24 +1,41 @@
 // ========== VISITOR COUNTER ==========
-async function updateVisitorCount() {
+function updateVisitorCount() {
   try {
-    // Always increment count on page load (for testing purposes)
-    const API_URL = window.location.hostname === 'localhost' 
-      ? 'http://localhost:3001' 
-      : 'https://api.preyashinsurance.com';
+    // Get count from localStorage or initialize
+    let count = parseInt(localStorage.getItem('visitorCount')) || 1250;
     
-    // Make POST request to increment counter
-    const response = await fetch(`${API_URL}/api/visitor-count`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch visitor count');
+    // Increment count only once per session
+    if (!sessionStorage.getItem('counted')) {
+      count++;
+      localStorage.setItem('visitorCount', count.toString());
+      sessionStorage.setItem('counted', 'true');
     }
+    
+    // Update display with animation
+    const visitorDisplay = document.getElementById('visitorCount');
+    if (!visitorDisplay) return;
 
-    const data = await response.json();
+    const startCount = parseInt(visitorDisplay.textContent.replace(/,/g, '')) || 0;
+    const endCount = count;
+    
+    // Animate the counter
+    const duration = 1000; // 1 second animation
+    const start = Date.now();
+    
+    const animate = () => {
+      const now = Date.now();
+      const progress = (now - start) / duration;
+      
+      if (progress < 1) {
+        const currentCount = Math.floor(startCount + (endCount - startCount) * progress);
+        visitorDisplay.textContent = currentCount.toLocaleString();
+        requestAnimationFrame(animate);
+      } else {
+        visitorDisplay.textContent = endCount.toLocaleString();
+      }
+    };
+    
+    animate();
     
     // Update the counter with animation
     const counterElement = document.getElementById('visitorCount');
@@ -53,10 +70,10 @@ async function updateVisitorCount() {
 
   } catch (error) {
     console.error('Error updating visitor count:', error);
-    // Show a fallback number if there's an error
-    const counterElement = document.getElementById('visitorCount');
-    if (counterElement && !counterElement.textContent) {
-      counterElement.textContent = '1,250';
+    // Show fallback count
+    const visitorDisplay = document.getElementById('visitorCount');
+    if (visitorDisplay && !visitorDisplay.textContent) {
+      visitorDisplay.textContent = '1,250';
     }
   }
 }
