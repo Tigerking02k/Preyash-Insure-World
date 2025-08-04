@@ -1,28 +1,22 @@
-const API_BASE_URL = window.location.hostname === 'localhost' 
-    ? 'http://localhost:3001' 
-    : 'https://preyashinsurance.com';
-
 // ========== VISITOR COUNTER ==========
 async function updateVisitorCount() {
     try {
-        const response = await fetch(`${API_BASE_URL}/api/visitor-count`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-
+        // Using a more reliable counter API with specific namespace and key
+        const namespace = 'preyash-insure';
+        const key = 'visitor-counter';
+        const response = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
+        
         if (!response.ok) {
-            throw new Error('Failed to fetch visitor count');
+            throw new Error('Counter API request failed');
         }
-
+        
         const data = await response.json();
         
         // Update the counter with animation
         const counterElement = document.getElementById('visitorCount');
         if (counterElement) {
             const startCount = parseInt(counterElement.textContent.replace(/,/g, '')) || 0;
-            const endCount = data.count;
+            const endCount = data.value;
             
             // Animate the counter
             const duration = 1000;
@@ -47,8 +41,10 @@ async function updateVisitorCount() {
     } catch (error) {
         console.error('Error updating visitor count:', error);
         const counterElement = document.getElementById('visitorCount');
-        if (counterElement && !counterElement.textContent) {
-            counterElement.textContent = '0';
+        if (counterElement) {
+            // Keep the existing count if there is one, otherwise show 1
+            const currentCount = parseInt(counterElement.textContent.replace(/,/g, '')) || 1;
+            counterElement.textContent = currentCount.toLocaleString();
         }
     }
 }
